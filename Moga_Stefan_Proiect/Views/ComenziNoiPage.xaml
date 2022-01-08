@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Moga_Stefan_Proiect.Views.ComenziNoiPage"
+             xmlns:vm="clr-namespace:Moga_Stefan_Proiect.ViewModels"
+             Title="{Binding Title}">
+    
+     <ContentPage.BindingContext>
+        <vm:ComenziNoiViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView x:Name="comNoiListView" 
+              CachingStrategy="RecycleElement"
+              BackgroundColor="{AppThemeBinding Dark=#3d3838, Light=White}"
+              IsPullToRefreshEnabled="True"
+              RefreshCommand="{Binding RefreshCommand}"
+              IsRefreshing="{Binding IsRefreshing}"
+              ItemsSource="{Binding PizzaList}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+                            <Label Text="{Binding Denumire}"/>
+                            <Label Text="{Binding Pret}"/>
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</ContentPage>
