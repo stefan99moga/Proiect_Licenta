@@ -34,5 +34,10 @@ namespace Moga_Stefan_Proiect.Views
             //  List<Pizza> listaPizza = await App.Database.GetOrderListsAsync();
             comNoiListView.ItemsSource = await App.Database.GetOrderListsAsync();
         }
+
+        private void comNoiListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }

@@ -10,21 +10,40 @@
     </ContentPage.BindingContext>
 
     <ListView x:Name="comNoiListView" 
+              ItemSelected="comNoiListView_ItemSelected"
+              HasUnevenRows="True"
+              RowHeight="10"
+              SeparatorVisibility="None"
               CachingStrategy="RecycleElement"
               BackgroundColor="{AppThemeBinding Dark=#3d3838, Light=White}"
               IsPullToRefreshEnabled="True"
               RefreshCommand="{Binding RefreshCommand}"
               IsRefreshing="{Binding IsRefreshing}"
+              RefreshControlColor="Red"
               ItemsSource="{Binding PizzaList}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout>
-                            <Label Text="{Binding Denumire}"/>
-                            <Label Text="{Binding Pret}"/>
-                        </StackLayout>
-                    </ViewCell.View>
+                    <Grid Padding="20">
+                        <Frame BackgroundColor="ForestGreen">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="120">
+                                <StackLayout>
+                                    <Label Text="{Binding Denumire}"
+                                           TextColor="White"
+                                           TextTransform="Uppercase"
+                                           FontSize="Small"/>
+                                    <Label Text="{Binding DataPlasareComanda}"
+                                           TextColor="White"
+                                           FontSize="Small"/>
+                                </StackLayout>
+                                <Label Text="{Binding Pret}"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       FontSize="Medium"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
