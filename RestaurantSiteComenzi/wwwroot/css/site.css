@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+a:hover{
+    background: #ffffff;
+    border-color: black;
+    color: black;
+}
+
+.add, .edit, .save, .delete {
+    outline: none;
+    background: none;
+    margin: 2px;
+}
+
+
+.add {
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.save {
+    background: #32AD60;
+    color: #ffffff;
+}
+
+.edit {
+    background: #2199e8;
+    color: #ffffff;
+}
+
+.delete {
+    background: #EC5840;
+    color: #ffffff;
+}

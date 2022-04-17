@@ -13,7 +13,7 @@ namespace Moga_Stefan_Proiect.Services
     {
         HttpClient client;
     
-        string RestUrl = "https://192.168.232.1:45456/api/Pizzas";
+        string RestUrl = "https://192.168.232.1:45455/api/Pizzas";
         public List<Pizza> Orders { get; private set; }
 
         public RestService()

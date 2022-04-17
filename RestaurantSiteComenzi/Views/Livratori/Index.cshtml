@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RestaurantSiteComenzi.Models.Livrator>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@Html.Partial("_Header")
+
+<h1 style="text-align: center">Livratori</h1>
+
+<p>
+    <a class="btn save" asp-action="Create">Adaugă un livrator nou</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume_Livrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenume_Livrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon_Livrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statut_Livrator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume_Livrator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenume_Livrator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon_Livrator)
+            </td>
+            <td>                
+                @if(item.Statut_Livrator == true)
+                {
+                    <text>Angajat</text>
+                }else
+                {
+                    <text>Demisionat</text>
+                }
+            </td>
+            <td>
+                <a class="btn edit" asp-action="Edit" asp-route-id="@item.id">Editează</a>
+                <a class="btn delete" asp-action="Delete" asp-route-id="@item.id">Ștergere</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

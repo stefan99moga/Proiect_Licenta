@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="AssemblyInfo.cs" />
     <Compile Remove="Models\ItemState.cs" />
     <Compile Remove="Models\OrderLocations.cs" />
     <Compile Remove="Models\RefreshCommand.cs" />

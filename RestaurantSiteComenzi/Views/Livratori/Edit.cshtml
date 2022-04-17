@@ -1,0 +1,52 @@
+﻿@model RestaurantSiteComenzi.Models.Livrator
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <link href="@Url.Content("~/css/form.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<h1>Editare Livrator</h1>
+
+<div class="div-form">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Nume_Livrator" class="control-label"></label>
+                <input asp-for="Nume_Livrator" class="form-control" />
+                <span asp-validation-for="Nume_Livrator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prenume_Livrator" class="control-label"></label>
+                <input asp-for="Prenume_Livrator" class="form-control" />
+                <span asp-validation-for="Prenume_Livrator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon_Livrator" class="control-label"></label>
+                <input asp-for="Telefon_Livrator" class="form-control" />
+                <span asp-validation-for="Telefon_Livrator" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label style="text-align: center;">
+                    @Html.DisplayNameFor(model => model.Statut_Livrator)
+                    <input style="text-align: center;" asp-for="Statut_Livrator" /> 
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvează" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Înapoi la tabel</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

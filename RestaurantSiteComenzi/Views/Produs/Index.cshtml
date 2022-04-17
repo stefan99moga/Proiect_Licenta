@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RestaurantSiteComenzi.Models.Produs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@Html.Partial("_Header")
+
+<h1 style="text-align: center">Produse</h1>
+
+<p>
+    <a class="btn save" asp-action="Create">Adaugă un produs nou</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume_Produs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pret_Produs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagine)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume_Produs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret_Produs)
+            </td>
+            <td>
+                <img style="width: 10rem; height: 10rem;" src="@Url.Content(item.Imagine)" />
+            </td>
+            <td>
+                <a class="btn edit" asp-action="Edit" asp-route-id="@item.Id">Editează</a>
+                <a class="btn delete" asp-action="Delete" asp-route-id="@item.Id">Ștergere</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
