@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using RestaurantSiteComenzi.Models;
 
 namespace RestaurantSiteComenzi.Controllers
 {
+    [Authorize]
     public class ComandaController : Controller
     {
         private readonly RestaurantContext _context;
@@ -83,37 +85,37 @@ namespace RestaurantSiteComenzi.Controllers
         // POST: Comanda/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Nume,Prenume,Oras,Strada,Numar,Bloc,Scara,Apartament,Numar_Telefon, Stare_Comanda_ID")] ComandaLivrare tblComanda)
-        {
-            if (id != tblComanda.id)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("id,Nume,Prenume,Oras,Strada,Numar,Bloc,Scara,Apartament,Numar_Telefon, Stare_Comanda_ID")] ComandaLivrare tblComanda)
+        //{
+        //    if (id != tblComanda.id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tblComanda);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!tblComandaExists(tblComanda.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tblComanda);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(tblComanda);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!tblComandaExists(tblComanda.id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(tblComanda);
+        //}
 
         // GET: Comanda/Delete/5
         public async Task<IActionResult> Delete(int? id)

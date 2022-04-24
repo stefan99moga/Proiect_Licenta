@@ -7,13 +7,34 @@
 
   <ItemGroup>
     <Compile Remove="Pages\**" />
+    <Compile Remove="Views\Adrese\**" />
     <Content Remove="Pages\**" />
+    <Content Remove="Views\Adrese\**" />
     <EmbeddedResource Remove="Pages\**" />
+    <EmbeddedResource Remove="Views\Adrese\**" />
     <None Remove="Pages\**" />
+    <None Remove="Views\Adrese\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml.cs" />
+    <Compile Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.cs" />
+    <Compile Remove="Views\RestaurantViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+    <Content Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="identityDB.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>

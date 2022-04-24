@@ -1,0 +1,60 @@
+﻿@page "{id:int}"
+@model AdressModel
+@using RestaurantSiteComenzi.Models;
+
+@{
+    ViewData["Title"] = "Editare adresă";
+    ViewData["ActivePage"] = ManageNavPages.Adress;
+}
+
+<h3>Editare</h3>
+<h4>Adresă</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Adrese.Id" />
+            <div class="form-group">
+                <label asp-for="Adrese.Oras" class="control-label"></label>
+                <input asp-for="Adrese.Oras" class="form-control"/>
+                <span asp-validation-for="Adrese.Oras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrese.Strada" class="control-label"></label>
+                <input asp-for="Adrese.Strada" class="form-control"/>
+                <span asp-validation-for="Adrese.Strada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrese.Numar" class="control-label"></label>
+                <input asp-for="Adrese.Numar" class="form-control"/>
+                <span asp-validation-for="Adrese.Numar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrese.Bloc" class="control-label"></label>
+                <input asp-for="Adrese.Bloc" class="form-control"/>
+                <span asp-validation-for="Adrese.Bloc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrese.Scara" class="control-label"></label>
+                <input asp-for="Adrese.Scara" class="form-control"/>
+                <span asp-validation-for="Adrese.Scara" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adrese.Apartament" class="control-label"></label>
+                <input asp-for="Adrese.Apartament" class="form-control"/>
+                <span asp-validation-for="Adrese.Apartament" class="text-danger"></span>
+            </div>
+            <div style="padding-top:5%">
+                <input type="submit" value="Salvare" class="btn btn-primary"/>
+            </div>
+            <div style="padding-top:5%">
+                 <a class="btn btn-primary" asp-page="Adress">Anulare</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

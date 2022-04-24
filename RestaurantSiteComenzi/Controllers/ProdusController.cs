@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSiteComenzi.Models;
 
 namespace RestaurantSiteComenzi.Controllers
 {
+    [Authorize]
     public class ProdusController : Controller
     {
         private readonly RestaurantContext _context;
@@ -16,7 +19,9 @@ namespace RestaurantSiteComenzi.Controllers
         // GET: Produs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produs.ToListAsync());
+            //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+            return View(await _context.Produs.Include(x =>x.Categorie_produs).ToListAsync());
         }
 
         // GET: Produs/Details/5
@@ -28,7 +33,7 @@ namespace RestaurantSiteComenzi.Controllers
             }
 
             var produs = await _context.Produs
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (produs == null)
             {
                 return NotFound();
@@ -40,6 +45,7 @@ namespace RestaurantSiteComenzi.Controllers
         // GET: Produs/Create
         public IActionResult Create()
         {
+            ViewBag.Categorii_Produs = new SelectList(_context.Categorie_Produs, "id","Categorie");
             return View();
         }
 
@@ -48,7 +54,7 @@ namespace RestaurantSiteComenzi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nume_Produs,Pret_Produs,Imagine")] Produs produs)
+        public async Task<IActionResult> Create([Bind("id,Nume_Produs,Pret_Produs,Imagine,Categorie_Id")] Produs produs)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +72,7 @@ namespace RestaurantSiteComenzi.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Categorii_Produs = new SelectList(_context.Categorie_Produs, "id", "Categorie");
             var produs = await _context.Produs.FindAsync(id);
             if (produs == null)
             {
@@ -80,9 +86,9 @@ namespace RestaurantSiteComenzi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nume_Produs,Pret_Produs,Imagine")] Produs produs)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Nume_Produs,Pret_Produs,Imagine,Categorie_Id")] Produs produs)
         {
-            if (id != produs.Id)
+            if (id != produs.id)
             {
                 return NotFound();
             }
@@ -96,7 +102,7 @@ namespace RestaurantSiteComenzi.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdusExists(produs.Id))
+                    if (!ProdusExists(produs.id))
                     {
                         return NotFound();
                     }
@@ -119,7 +125,7 @@ namespace RestaurantSiteComenzi.Controllers
             }
 
             var produs = await _context.Produs
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (produs == null)
             {
                 return NotFound();
@@ -141,7 +147,7 @@ namespace RestaurantSiteComenzi.Controllers
 
         private bool ProdusExists(int id)
         {
-            return _context.Produs.Any(e => e.Id == id);
+            return _context.Produs.Any(e => e.id == id);
         }
     }
 }

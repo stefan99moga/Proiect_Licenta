@@ -6,6 +6,7 @@
 
 @Html.Partial("_Header")
 
+
 <h1 style="text-align: center">Produse</h1>
 
 <p>
@@ -23,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Imagine)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorie_Id)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,11 +40,15 @@
                 @Html.DisplayFor(modelItem => item.Pret_Produs)
             </td>
             <td>
-                <img style="width: 10rem; height: 10rem;" src="@Url.Content(item.Imagine)" />
+                <img style="width: 100%; height: auto; max-width: 200px;"
+                src="@Url.Content(item.Imagine)" />
             </td>
             <td>
-                <a class="btn edit" asp-action="Edit" asp-route-id="@item.Id">Editează</a>
-                <a class="btn delete" asp-action="Delete" asp-route-id="@item.Id">Ștergere</a>
+                @Html.DisplayFor(modelItem => item.Categorie_produs.Categorie )
+            </td>
+            <td>
+                <a class="btn edit" asp-action="Edit" asp-route-id="@item.id">Editează</a>
+                <a class="btn delete" asp-action="Delete" asp-route-id="@item.id">Ștergere</a>
             </td>
         </tr>
 }

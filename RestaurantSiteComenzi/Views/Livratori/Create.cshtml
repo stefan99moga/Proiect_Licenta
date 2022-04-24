@@ -4,12 +4,14 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<head>
+    <link href="@Url.Content("~/css/form.css")" rel="stylesheet" type="text/css" />
+</head>
 
-<h4>Livrator</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<h1>Adăugare Livrator</h1>
+
+<div class="div-form">
+    <div class="col-md">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -28,19 +30,21 @@
                 <span asp-validation-for="Telefon_Livrator" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Statut_Livrator" /> @Html.DisplayNameFor(model => model.Statut_Livrator)
+                <label class="form-check-label"  style="float: none; text-align:center;">
+                @Html.DisplayNameFor(model => model.Statut_Livrator) 
+                <br />
+                <input checked="checked" asp-for="Statut_Livrator"/> <text>Activ</text>
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Adaugă" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Înapoi la listă</a>
 </div>
 
 @section Scripts {

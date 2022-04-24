@@ -1,0 +1,80 @@
+﻿@page
+@model RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage.AdressModel
+@using RestaurantSiteComenzi.Models;
+
+@{
+    ViewData["Title"] = "Adrese";
+    ViewData["ActivePage"] = ManageNavPages.Adress;
+}
+<h3>@ViewData["Title"] adăugate</h3>
+
+<a asp-page="./CreateAdress" class="btn btn-sm btn-primary">Adaugă adresă</a>
+
+@if(Model.AdreseList.Count > 0)
+{
+        <div class="row">
+        <div class="col-md-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Oraș
+                        </th>
+                        <th>
+                            Strada
+                        </th>
+                        <th>
+                            Număr
+                        </th>
+                        <th>
+                            Bloc
+                        </th>
+                        <th>
+                            Scară
+                        </th>
+                        <th>
+                            Apartament
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ( Adrese adressModel in Model.AdreseList)
+                    {
+                        <tr>
+                            <td>
+                                @adressModel.Oras
+                            </td>
+                            <td>
+                                @adressModel.Strada
+                            </td>
+                            <td>
+                                @adressModel.Numar
+                            </td>
+                            <td>
+                                @adressModel.Bloc
+                            </td>
+                            <td>
+                                @adressModel.Scara
+                            </td>
+                            <td>
+                                @adressModel.Apartament
+                            </td>
+                            <td>
+                                <a asp-page="./EditAdress" class="w-100 btn btn-sm btn-secondary" style="margin: 1px; display:inline;"
+                                asp-page-handler="edit" asp-route-id=" @adressModel.Id" >Editează</a>
+                                <a asp-page="./Adress" class="w-100 btn btn-sm btn-danger" style="margin: 1px; display:inline;"
+                                onclick="return confirm('Sunteți sigur că doriți să ștergeți adresa: @adressModel.Oras?');" 
+                                asp-page-handler="Delete" asp-route-id="@adressModel.Id">Șterge</a> 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+} else
+{
+    <h4 style="padding-top:10px">Nu aveți adrese adăugate!</h4>
+}
+

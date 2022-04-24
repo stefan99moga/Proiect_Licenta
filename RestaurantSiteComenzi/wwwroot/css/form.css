@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-a, .btn-primary, .btn-danger {
+a, .btn-primary, .btn-danger, .btn {
     background: #32AD60;
     border: 1px solid #ffff;
     padding: 10px;
