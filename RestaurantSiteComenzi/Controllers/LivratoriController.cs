@@ -21,9 +21,42 @@ namespace RestaurantSiteComenzi.Controllers
         }
 
         // GET: Livrators
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Livrator.ToListAsync());
+            //Sortare dupa nume prenume
+            ViewData["NameParam"] = sortOrder == "nume_cresc" ? "nume_desc" : "nume_cresc";
+            ViewData["PrenumeParam"] = sortOrder == "prenume_cresc" ? "prenume_desc" : "prenume_cresc";
+            //Sortare dupa statut angajat
+            ViewData["StatutParam"] = sortOrder == "angajat" ? "demisionat" : "angajat";
+
+            var livratori = from l in _context.Livrator select l;
+
+            switch (sortOrder)
+            {
+                case "nume_cresc":
+                    livratori = livratori.OrderBy(x => x.Nume_Livrator);
+                    break;
+                case "nume_desc":
+                    livratori = livratori.OrderByDescending(x => x.Nume_Livrator);
+                    break;
+                case "prenume_cresc":
+                    livratori = livratori.OrderBy(x => x.Prenume_Livrator);
+                    break;
+                case "prenume_desc":
+                    livratori = livratori.OrderByDescending(x => x.Prenume_Livrator);
+                    break;
+                case "angajat":
+                    livratori = livratori.Where(x => x.Statut_Livrator == true);
+                    break;
+                case "demisionat":
+                    livratori = livratori.Where(x => x.Statut_Livrator == false);
+                    break;
+                default:
+                    livratori = livratori.OrderBy(x => x.id);
+                    break;
+            }
+
+            return View(await livratori.AsNoTracking().ToListAsync());
         }
 
         // GET: Livrators/Details/5

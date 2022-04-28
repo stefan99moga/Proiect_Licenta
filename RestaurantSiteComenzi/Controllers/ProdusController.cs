@@ -17,10 +17,55 @@ namespace RestaurantSiteComenzi.Controllers
         }
 
         // GET: Produs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
             //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-            return View(await _context.Produs.Include(x =>x.Categorie_produs).ToListAsync());
+
+            //Sortare dupa categorie produs
+            ViewData["PizzaParam"] = String.IsNullOrEmpty(sortOrder) ? "pizza" : "pizza";
+            ViewData["DesertParam"] = String.IsNullOrEmpty(sortOrder) ? "desert" : "desert";
+            ViewData["BauturaParam"] = String.IsNullOrEmpty(sortOrder) ? "bautura" : "bautura";
+            //Sortare dupa nume
+            ViewData["NameParam"] = sortOrder == "nume_cresc" ? "nume_desc" : "nume_cresc";
+            //Sortare dupa pret
+            ViewData["PretParam"] = sortOrder == "pret_cresc" ? "pret_desc" : "pret_cresc";
+
+            var produse = from p in _context.Produs select p;
+            int pizza = 1;
+            int desert = 2;
+            int bautura = 3;
+
+
+            switch (sortOrder)
+            {
+                case "pizza":
+                    produse = produse.Where(x => x.Categorie_Id == pizza);
+                    break;
+                case "desert":
+                    produse = produse.Where(x => x.Categorie_Id == desert);
+                    break;
+                case "bautura":
+                    produse = produse.Where(x => x.Categorie_Id == bautura);
+                    break;
+                case "nume_cresc":
+                    produse = produse.OrderBy(x => x.Nume_Produs);
+                    break;
+                case "nume_desc":
+                    produse = produse.OrderByDescending(x => x.Nume_Produs);
+                    break;
+                case "pret_cresc":
+                    produse = produse.OrderBy(x => x.Pret_Produs);
+                    break;
+                case "pret_desc":
+                    produse = produse.OrderByDescending(produse => produse.Pret_Produs);
+                    break;
+                default:
+                    produse = produse.OrderBy(x => x.Categorie_Id);
+                    break;
+            }
+
+
+            return View(await produse.Include(x => x.Categorie_produs).AsNoTracking().ToListAsync());
         }
 
         // GET: Produs/Details/5

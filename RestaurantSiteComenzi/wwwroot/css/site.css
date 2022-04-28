@@ -78,3 +78,17 @@ a:hover{
         border-width: 1px 1px;
         box-shadow: 0 0 10px 2px rgba(13, 110, 253, 0.2);
     }
+
+.dropdown-toggle {
+    border:none;
+    background-color:transparent;
+    font-weight:bold    
+}
+
+#tabel-a {
+    color:black;
+    text-decoration:none;
+}
+    #tabel-a:hover, #dropdownMenuButton:hover {
+        color: #2199e8
+    }

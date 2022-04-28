@@ -8,24 +8,35 @@
     <h7> Panou de gestionare a produselor aflate în oferta restaurantului</h7>
 </div>
 
-<h1>//Implementare sortare</h1>
 <p>
     <a class="btn save" asp-action="Create">Adaugă un produs nou</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nume_Produs)
+                <a id="tabel-a" asp-action="Index" asp-route-sortOrder="@ViewData["NameParam"]">@Html.DisplayNameFor(model => model.Nume_Produs)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pret_Produs)
+                <a id="tabel-a" asp-action="Index" asp-route-sortOrder="@ViewData["PretParam"]">@Html.DisplayNameFor(model => model.Pret_Produs)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Imagine)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categorie_Id)
+                <div id="category" class="dropdown">
+                    <button class="dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a id="all" class="dropdown-item" asp-action="index">Toate produsele</a>
+                        <a id="P" class="dropdown-item" asp-route-sortOrder="@ViewData["PizzaParam"]">Pizza</a>
+                        <a id="D" class="dropdown-item" asp-route-sortOrder="@ViewData["DesertParam"]">Desert</a>
+                        <a id="B" class="dropdown-item" asp-route-sortOrder="@ViewData["BauturaParam"]">Băuturi</a>
+                    </div>
+                </div>
             </th>
             <th></th>
         </tr>
