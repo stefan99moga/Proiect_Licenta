@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-a, .btn-primary, .btn-danger, .btn {
+.btn-primary, .btn-danger {
     background: #32AD60;
     border: 1px solid #ffff;
     padding: 10px;
@@ -23,15 +23,23 @@ a, .btn-primary, .btn-danger, .btn {
     color: whitesmoke;
     border-radius: 5px;
 }
-    a:hover, .btn-primary:hover, .btn-danger:hover {
+    .btn-primary:hover, .btn-danger:hover {
         background: #ffffff;
         border-color: black;
         color: black;
     }
 
+.back {
+    background: #32AD60;
+    border: 1px solid #ffff;
+    border-radius: 5px;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
 .btn-primary {
     align-items: end;
-    display:block;
+    display: block;
     margin-left: auto;
 }
 

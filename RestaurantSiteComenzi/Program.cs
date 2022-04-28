@@ -44,11 +44,20 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     // Cookie settings
     options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
     options.LoginPath = "/Identity/Account/Login";
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.SlidingExpiration = true;
+});
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 
@@ -62,6 +71,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseAuthentication();
 app.UseHttpsRedirection();
+app.UseSession();
 app.UseStaticFiles();
 
 app.UseRouting();

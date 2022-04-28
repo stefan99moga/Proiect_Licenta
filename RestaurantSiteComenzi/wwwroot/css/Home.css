@@ -5,11 +5,9 @@
     padding: 10px 10px;
     height: 490px;
 }
-
 /* Remove extra left and right margins, due to padding */
 .row {
     margin: 0 -5px;
-
 }
 
     /* Clear floats after the columns */
@@ -32,8 +30,13 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
-    background-color: #faffff;
+    background-color: white;
 }
+
+    .card:hover {
+        box-shadow: 0 4px 8px 0 rgb(13, 110, 253, 0.2);
+        background-color: aliceblue;
+    }
 
 .card-body {
     height: 120px;
@@ -42,5 +45,4 @@
 img {
     height: 150px;
     object-fit: contain;
-    border-radius: 15px;
 }
