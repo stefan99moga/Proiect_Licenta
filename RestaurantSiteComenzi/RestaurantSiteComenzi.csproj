@@ -6,12 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Identity\Data\**" />
     <Compile Remove="Pages\**" />
     <Compile Remove="Views\Adrese\**" />
+    <Content Remove="Areas\Identity\Data\**" />
     <Content Remove="Pages\**" />
     <Content Remove="Views\Adrese\**" />
+    <EmbeddedResource Remove="Areas\Identity\Data\**" />
     <EmbeddedResource Remove="Pages\**" />
     <EmbeddedResource Remove="Views\Adrese\**" />
+    <None Remove="Areas\Identity\Data\**" />
     <None Remove="Pages\**" />
     <None Remove="Views\Adrese\**" />
   </ItemGroup>
@@ -19,6 +23,7 @@
   <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml.cs" />
     <Compile Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.cs" />
+    <Compile Remove="Controllers\AdreseController.cs" />
     <Compile Remove="Views\RestaurantViewModel.cs" />
   </ItemGroup>
 

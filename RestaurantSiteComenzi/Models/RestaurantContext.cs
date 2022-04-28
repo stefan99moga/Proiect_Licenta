@@ -18,5 +18,6 @@ namespace RestaurantSiteComenzi.Models
         public DbSet<Livrator> Livrator { get; set; }
         public DbSet<Adrese> Adrese { get; set; }
         public DbSet<Categorie_Produs> Categorie_Produs { get; set; }
+        public DbSet<Cos> Articol_Cos { get; set; }
     }
 }

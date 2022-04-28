@@ -1,6 +1,5 @@
 ﻿// js pentru produsele de pe pagina Home
 
-
 $(document).ready(function () {
     $('.addToCartBtn').click(function (e) {
         e.preventDefault();

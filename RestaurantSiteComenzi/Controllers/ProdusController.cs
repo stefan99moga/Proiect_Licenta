@@ -20,7 +20,6 @@ namespace RestaurantSiteComenzi.Controllers
         public async Task<IActionResult> Index()
         {
             //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
             return View(await _context.Produs.Include(x =>x.Categorie_produs).ToListAsync());
         }
 

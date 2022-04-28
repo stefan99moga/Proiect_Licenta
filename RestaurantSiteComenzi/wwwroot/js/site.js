@@ -1,13 +1,31 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
 
-// Write your JavaScript code.
+    //Sorteaza produsele din meniu
+    $('#category').before(function () {
+        var url = window.location.href
+        var parts = url.split("=")
+        var route = parts[parts.length - 1]
 
-$.validator.methods.range = function (value, element, param) {
-    var globalizedValue = value.replace(",", ".");
-    return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-}
+        switch (route) {
+            case "pizza":
+                $("#P").addClass('active');
+                $("#dropdownMenuButton").html('Pizza');
+                break;
+            case "desert":
+                $("#D").addClass('active');
+                $("#dropdownMenuButton").html('Desert');
+                break;
+            case "bautura":
+                $("#B").addClass('active');
+                $("#dropdownMenuButton").html('Bautură');
+                break;
+            default:
+                $("#all").addClass('active');
+                $("#dropdownMenuButton").html('Toate');
+                break;
+        }
+    });
 
-$.validator.methods.number = function (value, element) {
-    return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
-}
+    
+
+});

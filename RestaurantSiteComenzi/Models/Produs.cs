@@ -17,7 +17,7 @@ namespace RestaurantSiteComenzi.Models
         [Required, Display(Name = "Pret produs:")]
         public decimal Pret_Produs { get; set; } 
 
-        [Required, Display(Name = "Imagine:"), DataType(DataType.ImageUrl)]
+        [Display(Name = "Imagine:"), DataType(DataType.ImageUrl)]
         public string Imagine { get; set; }
 
         [Required, Display(Name = "Categorie:"), Range(1,3)]

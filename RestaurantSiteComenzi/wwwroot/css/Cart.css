@@ -1,0 +1,39 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+.size span {
+    font-size: 11px
+}
+
+.color span {
+    font-size: 11px
+}
+
+.product-deta {
+    margin-right: 70px;
+
+}
+
+.gift-card:focus {
+    box-shadow: none
+}
+
+.text-grey {
+    color: #a39f9f
+}
+
+.qty i {
+    font-size: 11px
+}
+
+#card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: white;
+    height: 100px;
+
+}
+    #card:hover {
+        height: 100px;
+        box-shadow: 0 4px 8px 0 rgb(13, 110, 253, 0.2);
+        background-color: aliceblue;
+    }
