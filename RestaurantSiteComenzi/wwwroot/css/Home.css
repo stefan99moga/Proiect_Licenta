@@ -46,3 +46,7 @@ img {
     height: 150px;
     object-fit: contain;
 }
+
+.dropdown-toggle {
+    background-color: #0d6efd;
+}

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace RestaurantSiteComenzi.Models
@@ -9,24 +8,41 @@ namespace RestaurantSiteComenzi.Models
     public class CosController : Controller
     {
         private readonly RestaurantContext _context;
-
         public CosController(RestaurantContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public Uri uri = new Uri("https://localhost:44305/api/");
+
+        public ViewResult Index()
         {
-
-            var user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var items = _context.Articol_Cos.Where(x => x.User_id == user_id);
-
-            if (items.Any())
+            //apelare webservice
+            using (var client = new HttpClient())
             {
-                return View(await _context.Articol_Cos.Include(x => x.Produs).ToListAsync());
-            }else
-            {
-                return View("EmptyCart");
+                var user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                client.BaseAddress = uri;
+                var responseTask = client.GetAsync("Cart?user_id=" + user_id);
+                responseTask.Wait();
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadFromJsonAsync<Cos[]>();
+                    readTask.Wait();
+
+                    var produse = readTask.Result;
+                    if(produse.Length == 0)
+                    {
+                        return View("EmptyCart");
+                    }
+
+                    return View(produse);
+                }
+                else
+                {
+                    return View();
+                }
             }
         }
     }
