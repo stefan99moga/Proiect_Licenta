@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<RestaurantSiteComenzi.Models.Produs>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
 
 @{
     ViewData["Title"] = "Bun venit!";
@@ -7,45 +9,57 @@
 <link href="~/css/Home.css" rel="stylesheet" />
 
 
-  <div class="row">
+<div class="row">
 
-      <div id="category" class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a id="all" class="dropdown-item" asp-action="index">Toate produsele</a>
-              <a id="P" class="dropdown-item" asp-route-sortOrder="@ViewData["PizzaParam"]">Pizza</a>
-              <a id="D" class="dropdown-item" asp-route-sortOrder="@ViewData["DesertParam"]">Desert</a>
-              <a id="B" class="dropdown-item" asp-route-sortOrder="@ViewData["BauturaParam"]">Băuturi</a>
-          </div>
-      </div>
+    <div id="category" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a id="all" class="dropdown-item" asp-action="index">Toate produsele</a>
+            <a id="P" class="dropdown-item" asp-route-sortOrder="@ViewData["PizzaParam"]">Pizza</a>
+            <a id="D" class="dropdown-item" asp-route-sortOrder="@ViewData["DesertParam"]">Desert</a>
+            <a id="B" class="dropdown-item" asp-route-sortOrder="@ViewData["BauturaParam"]">Băuturi</a>
+        </div>
+    </div>
       
     @foreach (var item in Model) {
-    <div class="column product_data">
-      <div class="card">
-          <div class="ImgHeight">
-            <img src=" @Url.Content(item.Imagine) " class="card-img-top">
-          </div>
-        <div class="card-body">
-          <h5 class="card-title"> @Html.DisplayFor(x => item.Nume_Produs) </h5>
-          <p class="font-italic text-danger"> @Html.DisplayFor(x => item.Pret_Produs)</p>
-        </div>
-        <div class="d-flex flex-row align-self-center product_data"  id="qty_select">
-            <input type="hidden" value=" @Html.DisplayFor(x => item.id) " class="prod_id"/>
-            <div class="input-group text-center" style="width: 95px">
-                <a class="decrement-btn"  id="remove-hover">
-                    <i class="fa fa-minus" style="padding-left:9px" id="remove-hover"></i>
-                </a>
-                <input type="text" readonly="readonly" id="qty_display"  class="qty-input text-center" value="1" style="padding-left:5px"/>
-                <a class="increment-btn" id="remove-hover">
-                    <i class="fa fa-plus" id="remove-hover"></i>
-                </a>
+        <div class="column product_data">
+            <div class="card">
+                <div class="ImgHeight">
+                <img src=" @Url.Content(item.Imagine) " class="card-img-top">
+                </div>
+            <div class="card-body">
+                <h5 class="card-title"> @Html.DisplayFor(x => item.Nume_Produs) </h5>
+                <p class="font-italic text-danger"> @Html.DisplayFor(x => item.Pret_Produs)</p>
+            </div>
+            <div class="d-flex flex-row align-self-center product_data"  id="qty_select">
+                <input type="hidden" value=" @Html.DisplayFor(x => item.id) " class="prod_id"/>
+                <input type="hidden" value="  " class="user_id"/>
+                <div class="input-group text-center" style="width: 95px">
+                    <a class="decrement-btn"  id="remove-hover">
+                        <i class="fa fa-minus" style="padding-left:9px" id="remove-hover"></i>
+                    </a>
+                    <input type="text" readonly="readonly" id="qty_display" class="qty-input text-center" value="1" style="padding-left:5px"/>
+                    <a class="increment-btn" id="remove-hover">
+                        <i class="fa fa-plus" id="remove-hover"></i>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary me-3 addToCartBtn">Adaugă în coș <i class="fa fa-shopping-cart"></i></button>
             </div>
         </div>
-        <br>
-        <button type="submit" class="btn btn-primary me-3 addToCartBtn">Adaugă în coș <i class="fa fa-shopping-cart"></i></button>
-        </div>
-      </div>
     }
 
-  </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        var user_id = "@userManager.GetUserId(User)"
+    </script>
+    <script type="text/javascript" src="~/js/Home.js"></script>
+}

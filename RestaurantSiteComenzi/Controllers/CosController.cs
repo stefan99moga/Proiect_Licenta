@@ -32,7 +32,13 @@ namespace RestaurantSiteComenzi.Models
                     readTask.Wait();
 
                     var produse = readTask.Result;
-                    if(produse.Length == 0)
+
+                    //double x = produse.FirstOrDefault().Quantity;
+                    //double y = (double)produse.FirstOrDefault().Produs.Pret_Produs;
+                    //ViewData["pret_double"] = y;
+                    //ViewData["Calcul_total"] = x * y;
+
+                    if (produse.Length == 0)
                     {
                         return View("EmptyCart");
                     }
