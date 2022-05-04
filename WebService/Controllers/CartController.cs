@@ -17,12 +17,13 @@ namespace WebService.Controllers
         {
             _context = context;
         }
-
+        
         // GET: api/<CartController>
         [HttpGet]
         public IEnumerable<Cos> Get(string user_id)
         {
             var cos = from c in _context.Articol_Cos select c;
+            
             var user_items = cos.Where(x => x.User_id == user_id);
             return user_items.Include(x => x.Produs);
         }

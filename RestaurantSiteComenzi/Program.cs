@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSiteComenzi.Models;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 

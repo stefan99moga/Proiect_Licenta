@@ -13,9 +13,9 @@ namespace RestaurantSiteComenzi.Models
         public string Nume_Produs { get; set; }
 
         [Range(1, 1000)]
-        [DataType(DataType.Currency)]
         [Required, Display(Name = "Pret produs:")]
-        public decimal Pret_Produs { get; set; } 
+        public decimal Pret_Produs { get; set; }
+        public string Pret_Produs_Str { get { return String.Format("{0:0.00} lei", this.Pret_Produs); } }
 
         [Display(Name = "Imagine:"), DataType(DataType.ImageUrl)]
         public string Imagine { get; set; }

@@ -13,7 +13,6 @@ namespace WebService.Models
         public string Nume_Produs { get; set; }
 
         [Range(1, 1000)]
-        [DataType(DataType.Currency)]
         [Required, Display(Name = "Pret produs:")]
         public decimal Pret_Produs { get; set; } 
 
