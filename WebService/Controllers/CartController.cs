@@ -25,7 +25,7 @@ namespace WebService.Controllers
             var cos = from c in _context.Articol_Cos select c;
             
             var user_items = cos.Where(x => x.User_id == user_id);
-            return user_items.Include(x => x.Produs);
+            return user_items.Include(x => x.Produs).OrderBy(x => x.Produs.Categorie_Id);
         }
 
         // GET api/<CartController>/5
@@ -38,8 +38,8 @@ namespace WebService.Controllers
         }
 
         // POST api/<CartController>
-        [HttpPost] //        [EnableCors(origin: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
-        public void Post([FromBody] Cos cos)
+        [HttpPost("AddToCart")] //        [EnableCors(origin: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+        public void AddToCart([FromBody] Cos cos)
         {
             var produse_similare_in_cos = _context.Articol_Cos.Where(x => x.Produs_id == cos.Produs_id && x.User_id == cos.User_id);
             var anonymus_user = cos.User_id.ToString();
@@ -63,16 +63,25 @@ namespace WebService.Controllers
             }
             else
             {
-                //utilizator anonim
+                //utilizator anonim arunca exceptie
                 throw new UserNotFoundException("Pentru a adăuga un produs trebuie să fiți autentificat!");
             }
         }
 
-        // PUT api/<CartController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] Cos cos)
-        //{
-        //}
+        [HttpPost("UpdateQtyCart")]
+        public void IncrementQty([FromBody] Cos cos)
+        {
+            var produs_similar_in_cos = _context.Articol_Cos.Where(x => x.id == cos.id && x.User_id == cos.User_id).FirstOrDefaultAsync();
+
+            if (produs_similar_in_cos.Result!=null)
+            {
+                produs_similar_in_cos.Result.Quantity = cos.Quantity;
+                _context.SaveChanges();
+            }
+            
+            //else exception produsul nu exista
+
+        }
 
         // DELETE api/<CartController>/5
         [HttpDelete("{id}")]

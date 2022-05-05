@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<RestaurantSiteComenzi.Models.Cos>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
 
 @{
     ViewData["Title"] = "Coș de cumpărături";
@@ -13,43 +15,56 @@
                 <div class="col-auto mr-auto">
                     <h4>Coșul de cumpărături:</h4> 
                 </div>
-                <div class="col-auto">
-                    <a class="fa fa-refresh fa-2x" aria-hidden="true" onClick="document.location.reload(true)"></a>
-                </div>
             </div>
             <hr />
             @{ 
-            double total_produse = 0;
+            double total_pret_produse = 0;
+            double total_pret_produs = 0;
+
             foreach (var item in Model)
             {
-                 total_produse += (double)item.Produs.Pret_Produs * item.Quantity;
-                //de facut aici: implementat actualizare cantitate, butonul plata
+                //CALCUL TOTAL PRODUS SI TOTAL PRODUSE DIN COS
+                total_pret_produse += (double)item.Produs.Pret_Produs * item.Quantity;
+                total_pret_produs = (double)item.Produs.Pret_Produs * item.Quantity;
+
                 <div class="d-flex flex-row justify-content-between align-items-center p-2 mt-4 px-3 rounded product_data" id="card">
+                <input type="hidden" value="@Html.DisplayFor(x => item.id)" class="data-cos-id"/>
+                
                     <!--IMAGINE PRODUS-->
                     <div class="mr-1">
                         <img class="rounded" src=" @Url.Content(item.Produs.Imagine) " width="100"/>
                     </div>
                     <!--NUME PRODUS-->
-                    <div class="d-flex flex-column align-items-center product-details">
+                    <div class="d-flex flex-column align-items-center">
                         <span class="font-weight-bold">@Html.DisplayFor(x => item.Produs.Nume_Produs)</span>
                     </div>
                     <!--SELECTARE CANTITATE PRODUS-->
-                    <div class="d-flex flex-row align-self-center "  id="qty_select">
+                    <div class="d-flex flex-row align-self-center"  id="qty_select">
                         <input type="hidden" value=" @Html.DisplayFor(x => item.id) " class="prod_id"/>
                         <div class="input-group text-center" style="width: 95px">
                             <a class="decrement-btn"  id="remove-hover">
                                 <i class="fa fa-minus" style="padding-left:9px" id="remove-hover"></i>
                             </a>
+                            <input type="hidden" class="qty-db-value" value="@Html.DisplayFor(x => item.Quantity)"/>
                             <input type="text" readonly="readonly" id="qty_display" class="qty-input text-center" value="@Html.DisplayFor(x => item.Quantity)" style="padding-left:5px"/>
                             <a class="increment-btn" id="remove-hover">
                                 <i class="fa fa-plus" id="remove-hover"></i>
                             </a>
                         </div>
                     </div>
-                    <!--PRET PRODUS-->
+                    <!--CALCUL PRET PRODUS-->
+                    <div style="padding:10px">
+                        x                    
+                    </div>
                     <div>
                         <h5 class="text-grey">@Html.DisplayFor(x => item.Produs.Pret_Produs_Str) </h5>
                     </div>
+                    <div>
+                        <h5 class="text-grey">=</h5>
+                    </div>
+                    <div>
+                            <h5 class="text-grey"> @String.Format("{0:0.##}", total_pret_produs) lei</h5>
+                        </div>
                     <!--STERGERE PRODUS DIN COS-->
                     <div class="d-flex align-items-center">
                         <button class="deleteCartBtn"><i class="fa fa-trash mb-1 text-danger"></i></button>
@@ -59,16 +74,20 @@
             
             <hr />
             <div class="d-flex flex-column align-items-center">
-                <h5>Total: <b> @total_produse lei</b> </h5> 
+                <h5>Total: <b class="text-grey"> @String.Format("{0:0.##}", total_pret_produse) lei</b> </h5> 
             </div>
             }
-            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white">
-                <button class=" btn btn-primary btn-lg" type="button">Alegere metodă de plată</button>
+            <div class="d-flex flex-end align-items-center mt-3 p-2 bg-white">
+                <button class="btn btn-primary btn-lg" type="button">Spre checkout</button>
             </div>
         </div>
     </div>
 </div>
 
+                
 @section Scripts{
-        <script type="text/javascript" src="~/js/Cart.js"></script>
+    <script type="text/javascript">
+        var user_id = "@userManager.GetUserId(User)"
+    </script>
+    <script type="text/javascript" src="~/js/Cart.js"></script>
 }
