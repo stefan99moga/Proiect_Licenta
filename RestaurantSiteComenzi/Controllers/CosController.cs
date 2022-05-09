@@ -7,12 +7,6 @@ namespace RestaurantSiteComenzi.Models
     [Authorize]
     public class CosController : Controller
     {
-        private readonly RestaurantContext _context;
-        public CosController(RestaurantContext context)
-        {
-            _context = context;
-        }
-
         public Uri uri = new Uri("https://localhost:44305/api/");
 
         public ViewResult Index()

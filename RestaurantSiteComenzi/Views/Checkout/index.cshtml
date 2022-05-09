@@ -1,0 +1,47 @@
+﻿@model RestaurantSiteComenzi.Models.Comenzi
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<head>
+    <link href="@Url.Content("~/css/form.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<div style="text-align: center">
+    <h1>Checkout</h1>
+</div>
+
+<div class="div-form">
+    <div class="col-md">
+        <form id="CheckoutForm" method="post">
+            <div class="form-group">
+                <label class="control-label">Alegeți adresa:</label>
+                <select class="form-control" id="adreseDropdown" name="adreseDropdown"></select>  
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">Adaugați o adresă nouă:</label>
+                <a  href="/Identity/Account/Manage/CreateNewAdress" class="btn btn-primary form">Adaugă adresă</a> 
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">Alegeți metoda de plată:</label>
+                <select class="form-control" id="tipPlataDropdown" name="tipPlataDropdown"></select>  
+            </div>
+            <br />
+            <div class="form-group">
+                <button type="submit" id="addTempOrder" class="btn btn-primary form">Verifică comanda</button> 
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var user_ID = "@userManager.GetUserId(User)";
+    </script>
+    <script type="text/javascript" src="~/js/Checkout.js"></script>
+}

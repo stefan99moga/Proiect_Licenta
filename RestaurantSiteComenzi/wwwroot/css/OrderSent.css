@@ -1,0 +1,391 @@
+﻿@media screen {
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+    }
+
+    @font-face {
+        font-family: 'Lato';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+    }
+}
+
+/* CLIENT-SPECIFIC STYLES */
+body,
+table,
+td,
+a {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+table,
+td {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+    border-radius: 30px;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+/* RESET STYLES */
+img {
+    border: 0;
+    height: auto;
+    line-height: 100%;
+    outline: none;
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse !important;
+    border-radius: 30px;
+}
+
+body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/** @format */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.containerOrder {
+    position: relative;
+    width: 350px;
+    height: 80px;
+    padding-top: 10px;
+    background: #1c1e29;
+    border-radius: 50px;
+    overflow: hidden;
+    animation: containerOrder 10s 1;
+}
+
+.complete-order {
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: azure;
+    animation: COfadeOut 10s 1;
+}
+
+.truck {
+    position: absolute;
+    width: 40%;
+    height: 70%;
+    top: 50%;
+    right: -60%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    animation: truck-move 10s 1 ease-in-out;
+}
+
+    .truck .back {
+        position: absolute;
+        width: 70%;
+        height: 100%;
+        left: 1px;
+        border-radius: 2px;
+        background-color: #e2e9fa;
+    }
+
+        .truck .back .doors {
+            position: absolute;
+            height: 48%;
+            width: 3px;
+            top: 2%;
+            background-color: white;
+        }
+
+            .truck .back .doors.left {
+                animation: door-left 10s 1 ease;
+                transform-origin: top;
+            }
+
+            .truck .back .doors.right {
+                top: auto;
+                bottom: 2%;
+                transform-origin: bottom;
+                animation: door-right 10s 1 ease;
+            }
+
+    .truck .front {
+        display: flex;
+        position: absolute;
+        width: 30%;
+        height: 90%;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        border-radius: 0 10px 10px 0;
+        background-color: royalblue;
+    }
+
+        .truck .front::before {
+            content: "";
+            background: linear-gradient( to bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 212, 255, 1) 20%, rgba(0, 182, 219, 1) 80%, rgba(0, 0, 0, 1) 80% );
+            position: absolute;
+            height: 100%;
+            width: 5%;
+            left: 0;
+        }
+
+        .truck .front::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 30%;
+            background-color: cornflowerblue;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 0 5px 5px 0;
+        }
+
+        .truck .front .window {
+            align-self: center;
+            position: absolute;
+            width: 60%;
+            height: 90%;
+            background: linear-gradient( 30deg, rgba(34, 34, 34, 1) 30%, rgba(70, 70, 70, 1) 35%, rgba(34, 34, 34, 1) 40%, rgba(66, 66, 66, 1) 45%, rgba(34, 34, 34, 1) 50% );
+            left: 6%;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .truck .front .light {
+            position: absolute;
+            height: 15%;
+            width: 7%;
+            background-color: yellow;
+            right: -2%;
+            top: 10%;
+            border-radius: 0 5px 5px 0;
+        }
+
+            .truck .front .light::before {
+                content: "";
+                opacity: 0;
+                position: absolute;
+                height: 30px;
+                width: 200px;
+                top: -10px;
+                background: linear-gradient( to right, rgba(188, 189, 0, 1) 0%, rgba(126, 126, 82, 0.5) 5%, rgba(126, 126, 82, 0.2) 10%, rgba(70, 70, 70, 0) 30% );
+                border-radius: 150%;
+                animation: light-on 10s 1 linear;
+            }
+
+        .truck .front .right {
+            top: auto;
+            bottom: 10px;
+        }
+
+.dashed-line {
+    position: absolute;
+    opacity: 0;
+    width: 500%;
+    height: 10px;
+    top: 50%;
+    right: -300%;
+    line-height: 0;
+    font-size: 30px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    letter-spacing: 10px;
+    transform: translateY(-50%);
+    animation: line-move 1 10s linear;
+}
+
+.containerOrder .box {
+    position: absolute;
+    width: 35px;
+    height: 30px;
+    background: linear-gradient( to bottom, rgb(177, 165, 96) 45%, rgb(117, 109, 61) 45%, rgb(117, 109, 61) 55%, rgb(177, 165, 96) 55% );
+    left: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: box-move 10s 1 linear;
+    opacity: 0;
+}
+
+@keyframes containerOrder {
+    8% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(0.96);
+    }
+
+    12% {
+        transform: scale(1);
+    }
+}
+
+@keyframes COfadeOut {
+    10% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    91% {
+        opacity: 1;
+    }
+}
+
+@keyframes truck-move {
+    12% {
+        right: -60%;
+    }
+
+    20% {
+        right: 10%;
+    }
+
+    30% {
+        right: 10%;
+    }
+
+    45% {
+        right: -10%;
+    }
+
+    65% {
+        right: 30%;
+    }
+}
+
+@keyframes door-left {
+    16% {
+        transform: rotate(0deg);
+    }
+
+    22% {
+        transform: rotate(115deg);
+    }
+
+    29% {
+        transform: rotate(115deg);
+    }
+
+    36% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes door-right {
+    18% {
+        transform: rotate(0deg);
+    }
+
+    24% {
+        transform: rotate(-115deg);
+    }
+
+    31% {
+        transform: rotate(-115deg);
+    }
+
+    38% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes box-move {
+    12% {
+        opacity: 0;
+    }
+
+    13% {
+        opacity: 1;
+        left: -35px;
+    }
+
+    20% {
+        left: 30px;
+    }
+
+    26% {
+        left: 30px;
+    }
+
+    30% {
+        left: 105px;
+        opacity: 1;
+    }
+
+    31% {
+        opacity: 0;
+    }
+}
+
+@keyframes light-on {
+    29% {
+        opacity: 0;
+    }
+
+    31% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    34% {
+        opacity: 1;
+    }
+}
+
+@keyframes line-move {
+    35% {
+        right: -300%;
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    90% {
+        right: -100%;
+        opacity: 0;
+    }
+}

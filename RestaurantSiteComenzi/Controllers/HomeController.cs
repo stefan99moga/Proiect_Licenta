@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestaurantSiteComenzi.Models;
 using RestaurantSiteComenzi.Helpers;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantSiteComenzi.Controllers

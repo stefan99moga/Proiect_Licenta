@@ -15,12 +15,19 @@ namespace RestaurantSiteComenzi.Models
         public int Quantity { get; set; }
 
         [Required]
-        public System.DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
         [Required]
         public int Produs_id { get; set; }
+        public int? Comanda_id { get; set; }
+
+        [Required]
+        public bool Is_Cart_In_Order { get; set; }
 
         [ForeignKey("Produs_id")]
         public Produs Produs { get; set; }
+
+        [ForeignKey("Comanda_id")]
+        public Comenzi Comenzi { get; set; }
     }
 }

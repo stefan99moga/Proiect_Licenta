@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RestaurantSiteComenzi.Models.Produs>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produse";
 }
 <div style="text-align: center">
     <h1 >Produse</h1>
@@ -31,7 +31,7 @@
                         aria-haspopup="true" aria-expanded="false">
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a id="all" class="dropdown-item" asp-action="index">Toate produsele</a>
+                        <a id="all" class="dropdown-item" asp-action="index">Toate</a>
                         <a id="P" class="dropdown-item" asp-route-sortOrder="@ViewData["PizzaParam"]">Pizza</a>
                         <a id="D" class="dropdown-item" asp-route-sortOrder="@ViewData["DesertParam"]">Desert</a>
                         <a id="B" class="dropdown-item" asp-route-sortOrder="@ViewData["BauturaParam"]">Băuturi</a>

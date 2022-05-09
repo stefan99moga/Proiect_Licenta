@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RestaurantSiteComenzi.Models.Cos>
+
+@{
+    ViewData["Title"] = "Detaii";
+}
+
+<h1>Produse Comandă</h1>
+
+<div>
+    <h4>Produsele din comanda #@Model.Select(x => x.Comanda_id).FirstOrDefault() </h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produs.Nume_Produs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produs.Pret_Produs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Model => item.Produs.Nume_Produs)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.Produs.Pret_Produs_Str) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.Quantity)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <a class="btn btn-secondary" asp-action="Index">Înapoi spre Panou Comenzi</a>
+</div>

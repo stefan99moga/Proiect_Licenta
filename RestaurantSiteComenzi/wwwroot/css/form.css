@@ -6,7 +6,7 @@
 }
 
 .form-group, .form-control, .control-label, .text-danger, label {
-    margin: 5px auto;
+    margin: 6px auto;
     display: block;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .btn-primary, .btn-danger {
-    background: #32AD60;
+/*    background: #32AD60;*/
     border: 1px solid #ffff;
     padding: 10px;
     text-decoration: none;
@@ -52,4 +52,10 @@
 
 h1, h2 {
     text-align: center;
+}
+
+.form {
+    width: 10rem;
+    margin-bottom: 0.5rem;
+    margin-right:auto
 }

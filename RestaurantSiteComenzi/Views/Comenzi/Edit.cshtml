@@ -1,0 +1,33 @@
+﻿@model RestaurantSiteComenzi.Models.Comenzi
+
+@{
+    ViewData["Title"] = "Status Comanda";
+}
+
+<link href="@Url.Content("~/css/form.css")" rel="stylesheet" type="text/css" />
+
+<h1>Schimbare Status Comanda</h1>
+
+<div class="div-form" style="width:30%">
+    <div class="col-md">
+        <form id="ComandaEdidForm" method="post">
+            <div class="form-group">
+                <select class="form-control" id="stareComandaDropdown"></select>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="saveOrderChanges" class="btn btn-success">Salvează</button> 
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="padding:15px 15px">
+    <a class="btn btn-secondary" asp-action="Index">Înapoi la tabel</a>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var comanda_id = @Model.Id;
+    </script>
+    <script type="text/javascript" src="~/js/Comenzi.js"></script>
+}

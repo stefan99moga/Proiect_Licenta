@@ -22,12 +22,53 @@ namespace WebService.Models
         public string Numar { get; set; }
 
         [Display(Name = "Bloc")]
-        public string Bloc { get; set; }
+        public string Bloc
+        {
+            get
+            {
+                if (_bloc != null)
+                    return _bloc;
+                return string.Empty;
+            }
+            set
+            {
+                _bloc = value;
+            }
+        }
+        private string _bloc = string.Empty;
 
         [Display(Name = "Scara")]
-        public string Scara { get; set; }
+        public string Scara
+        {
+            get
+            {
+                if (_scara != null)
+                    return _scara;
+                return string.Empty;
+            }
+            set
+            {
+                _scara = value;
+            }
+        }
+        private string _scara = string.Empty;
 
         [Display(Name = "Apartament")]
-        public string Apartament { get; set; }
+        public string Apartament
+        {
+            get
+            {
+                if (_ap != null)
+                    return _ap;
+                return string.Empty;
+            }
+            set
+            {
+                _ap = value;
+            }
+        }
+        private string _ap = string.Empty;
+
+        public bool IsDeprecated { get; set; }
     }
 }

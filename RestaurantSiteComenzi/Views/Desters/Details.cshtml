@@ -1,0 +1,61 @@
+﻿@model RestaurantSiteComenzi.Models.Comenzi
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Comenzi</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Total_Plata)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Total_Plata)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Data_Comanda)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Data_Comanda)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Is_Deprecated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Is_Deprecated)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adrese)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adrese.Numar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tip_plata)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tip_plata.Tipul_Platii)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stare_Comanda)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stare_Comanda.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

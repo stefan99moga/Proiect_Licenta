@@ -1,0 +1,102 @@
+﻿@model IEnumerable<RestaurantSiteComenzi.Models.Comenzi>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+@{
+    ViewData["Title"] = "Comenzi";
+}
+
+<div style="text-align: center">
+    <h1>Comenzi</h1>
+    <h7>Panou de gestionare a comenzilor</h7>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID comanda:
+            </th>
+            <th>
+                Utilizator:
+            </th>
+            <th>
+                Telefon:
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adrese.Strada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adrese.Numar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tip_plata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total_Plata)
+            </th>
+            <th>
+                <div id="state" class="dropdown">
+                    <button class="dropdown-toggle"
+                        type="button" id="dropdownMenuButtonState" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">Status
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
+                        <a id="all" class="dropdown-item" asp-action="index">Toate</a>
+                        <a id="a" class="dropdown-item" asp-route-sortOrder="@ViewData["IndecisaParam"]">Indecisa</a>
+                        <a id="b" class="dropdown-item" asp-route-sortOrder="@ViewData["PrimitaParam"]">Primita</a>
+                        <a id="c" class="dropdown-item" asp-route-sortOrder="@ViewData["ConfirmataParam"]">Confirmata</a>
+                        <a id="d" class="dropdown-item" asp-route-sortOrder="@ViewData["RefuzataParam"]">Refuzata</a>
+                        <a id="e" class="dropdown-item" asp-route-sortOrder="@ViewData["AnulataParam"]">Anulata</a>
+                        <a id="f" class="dropdown-item" asp-route-sortOrder="@ViewData["LivrataParam"]">Livrata</a>
+                    </div>
+                </div>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Comanda)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @userManager.Users.FirstOrDefault(x => x.Id == item.User_ID)
+                </td>
+                <td>
+                    @userManager.Users.Where(x => x.Id == item.User_ID).Select(x => x.PhoneNumber).SingleOrDefault()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adrese.Strada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adrese.Numar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tip_plata.Tipul_Platii)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_Plata_Str)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stare_Comanda.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Comanda)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger btn-sm" >Status</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm" >Detalii</a>
+                </td>
+            </tr>            
+        }
+    </tbody>
+</table>

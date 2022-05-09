@@ -24,18 +24,20 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
         {
             var user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            AdreseList = (from adresa in this._context.Adrese where adresa.User_ID == user_id select adresa).ToList();
+            AdreseList = (from adresa in this._context.Adrese where adresa.User_ID == user_id && adresa.IsDeprecated == false select adresa).ToList();
         }
 
         public ActionResult OnPost()
         {
             var adrese = Adrese;
+            adrese.IsDeprecated = false;
+            adrese.Id = 0;
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             adrese.User_ID = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var result = _context.Add(adrese);
+            _context.Add(adrese);
             _context.SaveChanges();
             
             return RedirectToPage("./Adress");
@@ -55,19 +57,10 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
         public ActionResult OnPostEdit()
         {
             var adrese = Adrese;
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Entry(adrese).Property(x => x.Oras).IsModified = true;
-            _context.Entry(adrese).Property(x => x.Strada).IsModified = true;
-            _context.Entry(adrese).Property(x => x.Numar).IsModified = true;
-            _context.Entry(adrese).Property(x => x.Bloc).IsModified = true;
-            _context.Entry(adrese).Property(x => x.Scara).IsModified = true;
-            _context.Entry(adrese).Property(x => x.Apartament).IsModified = true;
+            adrese.IsDeprecated = true;
+            _context.Entry(adrese).Property(x => x.IsDeprecated).IsModified = true;
             _context.SaveChanges();
-            return RedirectToPage("./Adress");
+            return OnPost();
         }
 
         public ActionResult OnGetDelete(int? id)
@@ -76,7 +69,8 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
             {
                 var data = (from adress in _context.Adrese
                             where adress.Id == id select adress).SingleOrDefault();
-                _context.Remove(data);
+                data.IsDeprecated = true;
+                _context.Entry(data).Property(x => x.IsDeprecated).IsModified = true;
                 _context.SaveChanges();
             }
 

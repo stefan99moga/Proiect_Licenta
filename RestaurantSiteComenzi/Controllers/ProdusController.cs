@@ -20,9 +20,6 @@ namespace RestaurantSiteComenzi.Controllers
         // GET: Produs
         public ViewResult Index(string sortOrder)
         {
-            //Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
-
             //Sortare dupa categorie produs
             ViewData["PizzaParam"] = String.IsNullOrEmpty(sortOrder) ? "pizza" : "pizza";
             ViewData["DesertParam"] = String.IsNullOrEmpty(sortOrder) ? "desert" : "desert";

@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+@{
+    ViewData["Title"] = "Verificare comanda";
+}
+
+<h1>Verificare comanda</h1>
+
+<div class="col-md-6" style="margin:auto">
+	<div class="card">
+		<div class="card-header" >
+			<div class="d-inline h4">Detalii comanda:</div>
+		</div>
+		<div class="card-body">
+			<!-- PRODUSE -->
+			<dl class="row">
+				<dt class="col-sm-4 h5">Produse:</dt>
+				<dd class="col-sm-8"><a asp-action="/Cos" class="link-secondary" id="back-to-cart">Schimba</a></dd>
+			</dl>
+
+			<dl class="row" id="produse">
+				<!-- AICI SE INSEREAZA PRODUSELE-->
+			</dl>
+
+			<!-- ADRESA -->
+			<dl class="row">
+				<dt class="col-sm-4 h5">Adresa:</dt>
+				<dd class="col-sm-8"><a asp-action="" class="link-secondary back-to-checkout">Schimba</a></dd> 
+			</dl>
+
+			<dl class="row" id="adresa">
+				<!-- AICI SE INSEREAZA ADRESA-->
+			</dl>
+
+			<!-- TIP PLATA-->
+			<dl class="row">
+				<dt class="col-sm-4 h5">Tip plată:</dt>
+				<dd class="col-sm-8"><a asp-action="" class="link-secondary back-to-checkout">Schimba</a></dd>
+				<dd class="col-sm-8" id="tip-plata"></dd>
+			</dl>
+
+			
+			<hr>
+			<dl class="row">
+				<dt class="col-sm-4 h4">Total:</dt>
+				<dd class="col-sm-4 h4" id="total-plata"></dd>
+				<div class="col-sm-4" >
+					<a class="btn btn-primary" style="color:white" id="sendOrder" >Trimite comanda</a> 
+				</div>
+			</dl>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+    <script>
+        var user_ID = "@userManager.GetUserId(User)";
+    </script>
+    <script type="text/javascript" src="~/js/Verificare.js"></script>
+}

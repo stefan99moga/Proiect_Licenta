@@ -1,0 +1,30 @@
+﻿.title {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size:30px;
+}
+
+.textBox{
+    position:relative;
+    text-align:center;
+}
+
+.empty-card {
+    animation-name: empty-card-animation;
+    animation-duration: 10s;
+    animation-iteration-count: infinite
+}
+
+@keyframes empty-card-animation {
+    0% {
+        color: inherit;
+    }
+
+    50% {
+        color: orangered;
+    }
+
+    100% {
+        color: inherit;
+    }
+}
