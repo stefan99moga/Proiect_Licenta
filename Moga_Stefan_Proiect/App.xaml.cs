@@ -1,5 +1,4 @@
-﻿//using Moga_Stefan_Proiect.Services;
-using Moga_Stefan_Proiect.Views;
+﻿using Moga_Stefan_Proiect.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;

@@ -33,7 +33,7 @@ namespace Moga_Stefan_Proiect.ViewModels
 
         public ComenziViewModel()
         {
-            Title = "Comenzi";
+            Title = "Comenzile mele";
             
             Order = new ObservableRangeCollection<Order>();
 
@@ -44,10 +44,9 @@ namespace Moga_Stefan_Proiect.ViewModels
             RemoveCommand = new AsyncCommand<Order>(Remove);
             EditCommand = new AsyncCommand<Order>(Edit);
         }
-        private async Task Add()
-        {
-           
 
+        private async Task Add() //TODO Add from comenzi noi
+        {
             var orderNumber = await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceti numarul comenzii aflat pe bon", "Urmator", "Renunta", maxLength: 3, keyboard: Keyboard.Numeric);
             if (orderNumber == null)
                 return;
@@ -56,7 +55,7 @@ namespace Moga_Stefan_Proiect.ViewModels
             if (adress == null)
                 return;
 
-            var paymentMethod = await App.Current.MainPage.DisplayActionSheet("TIP PLATA", "Renunta", null, "Cash","Card","Online");
+            var paymentMethod = await App.Current.MainPage.DisplayActionSheet("TIP PLATA", "Renunta", null, "Cash", "Card", "Online");
             if (paymentMethod == "Renunta")
                 return;
 
@@ -73,7 +72,7 @@ namespace Moga_Stefan_Proiect.ViewModels
             await Refresh();
         }
 
-        private async Task Remove(Order order)
+        private async Task Remove(Order order) //TODO Anuleaza actiundea de a lua comanda
         {
             bool result = await App.Current.MainPage.DisplayAlert("Sigur doriti sa stergeti comanda?", null, "DA", "NU");
             if(result == true)
@@ -93,7 +92,7 @@ namespace Moga_Stefan_Proiect.ViewModels
             var orders = await OrderService.GetOrder();
             Order.AddRange(orders);
         }
-        private async Task Edit(Order order)
+        private async Task Edit(Order order) //TODO Modifica starea comenzii si finalizeaza comanda
         {
             order.OrderNumber = Convert.ToInt16(await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceti numarul comenzii aflat pe bon", "Urmator", "Renunta", maxLength: 3, keyboard: Keyboard.Numeric, initialValue: order.OrderNumber.ToString()));
             if (order.OrderNumber == 0)

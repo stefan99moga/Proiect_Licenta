@@ -12,7 +12,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 var ConnectionString = builder.Configuration.GetConnectionString("RestaurantConstr");
 
 //Entity Framework  
-builder.Services.AddDbContext<global::RestaurantSiteComenzi.Models.RestaurantContext>((global::Microsoft.EntityFrameworkCore.DbContextOptionsBuilder options) =>
+builder.Services.AddDbContext<RestaurantContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(ConnectionString));
 
 // Add services to the container.

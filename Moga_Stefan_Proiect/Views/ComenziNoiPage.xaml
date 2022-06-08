@@ -11,6 +11,7 @@
 
     <ListView x:Name="comNoiListView" 
               ItemSelected="comNoiListView_ItemSelected"
+              ItemTapped="comNoiListView_ItemTapped"
               HasUnevenRows="True"
               RowHeight="10"
               SeparatorVisibility="None"
@@ -20,26 +21,39 @@
               RefreshCommand="{Binding RefreshCommand}"
               IsRefreshing="{Binding IsRefreshing}"
               RefreshControlColor="Red"
-              ItemsSource="{Binding PizzaList}">
+              ItemsSource="{Binding NewOrderList}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Grid Padding="20">
-                        <Frame BackgroundColor="ForestGreen">
+                        <Frame BackgroundColor="{AppThemeBinding Dark=#B31B1B, Light=#f8dada}">
                             <StackLayout Orientation="Horizontal"
-                                         Spacing="120">
+                                         Spacing="20">
+                                <Label Text="{Binding Id}"
+                                           TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                           FontSize="Large"/>
+                                
                                 <StackLayout>
-                                    <Label Text="{Binding Denumire}"
-                                           TextColor="White"
-                                           TextTransform="Uppercase"
-                                           FontSize="Small"/>
-                                    <Label Text="{Binding DataPlasareComanda}"
-                                           TextColor="White"
-                                           FontSize="Small"/>
+                                    
+                                    <Label TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                           FontSize="Default">
+
+                                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                                            <Binding Path="Adrese.Oras" />
+                                            <Binding Path="Adrese.Strada" />
+                                            <Binding Path="Adrese.Numar" />
+                                        </MultiBinding>
+                                    </Label>
+                                        
+                                    <Label Text="{Binding Data_Comanda}"
+                                           TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                           FontSize="Micro"/>
+                                    
                                 </StackLayout>
-                                <Label Text="{Binding Pret}"
+                                <Label Text="{Binding Total_Plata_Str}"
                                        VerticalOptions="Center"
-                                       TextColor="White"
+                                       HorizontalOptions="EndAndExpand"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
                                        FontSize="Medium"/>
                             </StackLayout>
                         </Frame>

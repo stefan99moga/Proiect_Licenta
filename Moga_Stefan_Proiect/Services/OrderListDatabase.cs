@@ -12,7 +12,7 @@ namespace Moga_Stefan_Proiect.Services
         {
             restService = service;
         }
-        public Task<List<Pizza>> GetOrderListsAsync()
+        public Task<List<NewOrder>> GetOrderListsAsync()
         {
             return restService.RefreshDataAsync();
         }

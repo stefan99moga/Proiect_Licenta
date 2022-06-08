@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using Moga_Stefan_Proiect.Models;
 using System.Net.Http;
 
+
 namespace Moga_Stefan_Proiect.Services
 {
     public class RestService : IRestService
     {
         HttpClient client;
     
-        string RestUrl = "https://192.168.232.1:45455/api/Pizzas";
-        public List<Pizza> Orders { get; private set; }
+        string RestUrl = "https://webservice-mj5.conveyor.cloud/api/Comenzi";
+        public List<NewOrder> Orders { get; private set; }
 
         public RestService()
         {
@@ -24,9 +25,9 @@ namespace Moga_Stefan_Proiect.Services
             client = new HttpClient(httpClientHandler);
         }
 
-        public async Task<List<Pizza>> RefreshDataAsync()
+        public async Task<List<NewOrder>> RefreshDataAsync()
         {
-            Orders = new List<Pizza>();
+            Orders = new List<NewOrder>();
 
             Uri uri = new Uri(string.Format(RestUrl, string.Empty));
             try
@@ -35,15 +36,14 @@ namespace Moga_Stefan_Proiect.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    Orders = JsonConvert.DeserializeObject<List<Pizza>>(content);
+                    Orders = JsonConvert.DeserializeObject<List<NewOrder>>(content);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(@"\tERROR {0}", ex.Message);
             }
-
-            return Orders;
+            return Orders.FindAll(x => x.Stare_Comanda_ID == 2);
         }
     }
 }

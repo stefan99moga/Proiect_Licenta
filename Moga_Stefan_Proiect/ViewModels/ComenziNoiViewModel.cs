@@ -14,7 +14,7 @@ namespace Moga_Stefan_Proiect.ViewModels
 {
     public class ComenziNoiViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Pizza> PizzaList { get; set; }
+        public ObservableRangeCollection<NewOrder> NewOrderList { get; set; }
         public AsyncCommand RefreshComd { get; }
         public ICommand RefreshCommand
         {
@@ -24,7 +24,6 @@ namespace Moga_Stefan_Proiect.ViewModels
                 {
                     IsRefreshing = true;
                     await Refresh();
-                    
                     IsRefreshing = false;
                 });
             }
@@ -32,18 +31,17 @@ namespace Moga_Stefan_Proiect.ViewModels
         public ComenziNoiViewModel()
         {
             Title = "Comenzi noi";
-            PizzaList = new ObservableRangeCollection<Pizza>();
+            NewOrderList = new ObservableRangeCollection<NewOrder>();
+            _ = Refresh();
             RefreshComd = new AsyncCommand(Refresh);
         }
 
-        
-
         private async Task Refresh()
         {
-            PizzaList.Clear();
-            var pizzas = await App.Database.GetOrderListsAsync();
-//            await OrderService.GetOrder();
-            PizzaList.AddRange(pizzas);
+            NewOrderList.Clear();
+            var orders = await App.Database.GetOrderListsAsync();
+            NewOrderList.AddRange(orders);
+            
         }
     }
 }

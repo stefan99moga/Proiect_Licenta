@@ -30,7 +30,7 @@ namespace Moga_Stefan_Proiect.Views
         public async void GetOrderPinLocations()
         {
             var order = await OrderService.GetOrder();
-            
+
             if(order != null)
             {
                 foreach(var item in order)

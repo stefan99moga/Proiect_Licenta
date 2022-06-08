@@ -6,6 +6,6 @@ namespace Moga_Stefan_Proiect.Services
 {
     public interface IRestService
     {
-        Task<List<Pizza>> RefreshDataAsync();
+        Task<List<NewOrder>> RefreshDataAsync();
     }
 }

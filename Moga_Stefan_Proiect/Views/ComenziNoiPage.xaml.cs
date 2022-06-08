@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Moga_Stefan_Proiect.ViewModels;
 
 namespace Moga_Stefan_Proiect.Views
 {
@@ -11,33 +12,14 @@ namespace Moga_Stefan_Proiect.Views
         public ComenziNoiPage()
         {
             InitializeComponent();
-            comNoiListView.RefreshCommand = new Command(() =>
-            {
-                RefreshData();
-                comNoiListView.IsRefreshing = false;
-            });
-        }
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-          //  List<Pizza> listaPizza = await App.Database.GetOrderListsAsync();
-            comNoiListView.ItemsSource = await App.Database.GetOrderListsAsync();
-        }
-
-
-        public async void RefreshData()
-        {
-            comNoiListView.ItemsSource = await App.Database.GetOrderListsAsync();
-        }
-        protected override async void OnBindingContextChanged()
-        {
-            //  List<Pizza> listaPizza = await App.Database.GetOrderListsAsync();
-            comNoiListView.ItemsSource = await App.Database.GetOrderListsAsync();
         }
 
         private void comNoiListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void comNoiListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
         }
     }
 }

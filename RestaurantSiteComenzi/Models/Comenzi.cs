@@ -8,14 +8,15 @@ namespace RestaurantSiteComenzi.Models
         [Key]
         [Required]
         public int Id { get; set; }
+
         [Required]
         public string User_ID { get; set; }
-        //[Required]
-        //public int Articol_Cos_ID { get; set; } // DB: Articol_cos  Model: Cos
+
         [Required]
         public int Adress_ID { get; set; } // DB: Adress    Model: Adrese
         [Required]
         public int Tip_Plata_ID { get; set; } // Tip_Plata
+
         [Required]
         [Display(Name = "Total Plată")]
         public decimal Total_Plata { get; set; }
@@ -24,15 +25,12 @@ namespace RestaurantSiteComenzi.Models
         [Display(Name = "Data")]
         [Required]
         public DateTime Data_Comanda { get; set; } = DateTime.Now;
+
         [Required]
         [Display(Name = "Status curent comandă:")]
         public int Stare_Comanda_ID { get; set; } // Stare_Comanda
 
         public bool Is_Deprecated { get; set; }
-
-        //foreign keys:
-        //[ForeignKey("Articol_Cos_ID")]
-        //public Cos Cos { get; set; }
 
         [ForeignKey("Adress_ID")]
         public Adrese Adrese { get; set; }
