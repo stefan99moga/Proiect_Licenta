@@ -19,7 +19,7 @@ namespace RestaurantSiteComenzi.Controllers
             _context = context;
         }
 
-        public ViewResult Index(string sortOrder)
+        public ViewResult Index(string sortOrder, int searchId)
         {
             //Sortare dupa stare comanda
             ViewData["IndecisaParam"] = String.IsNullOrEmpty(sortOrder) ? "indecisa" : "indecisa";
@@ -29,32 +29,59 @@ namespace RestaurantSiteComenzi.Controllers
             ViewData["AnulataParam"] = String.IsNullOrEmpty(sortOrder) ? "anulata" : "anulata";
             ViewData["LivrataParam"] = String.IsNullOrEmpty(sortOrder) ? "livrata" : "livrata";
 
-
             //apelare webservice
             using (var client = new HttpClient())
             {
                 client.BaseAddress = uri;
-                var responseTask = client.GetAsync("Comenzi?sortOrder=" + sortOrder);
+                var url_string = "";
+
+
+                if (searchId > 0)
+                {
+                    url_string = "Comenzi/" + searchId;
+                }
+                else
+                {
+                    url_string = "Comenzi?sortOrder=" + sortOrder;
+                }
+
+                var responseTask = client.GetAsync(url_string);
                 responseTask.Wait();
                 var result = responseTask.Result;
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadFromJsonAsync<Comenzi[]>();
-                    readTask.Wait();
-
-                    var comenzi = readTask.Result;
-
-                    if (comenzi.Length == 0)
+                    if (searchId > 0)
                     {
-                        return View("EmptyOrders");
+                        Comenzi[] temp_list = new Comenzi[1];
+                        var  readTask1 = result.Content.ReadFromJsonAsync<Comenzi>();
+                        readTask1.Wait();
+                        temp_list[0] = readTask1.Result;
+                        var comenzi = temp_list;
+                        if (comenzi.Length == 0)
+                        {
+                            return View("EmptyOrders");
+                        }
+                        return View(comenzi);
+                    }
+                    else
+                    {
+                        var readTask = result.Content.ReadFromJsonAsync<Comenzi[]>();
+                        readTask.Wait();
+                        var comenzi = readTask.Result;
+
+                        if (comenzi.Length == 0)
+                        {
+                            return View("EmptyOrders");
+                        }
+
+                        return View(comenzi.OrderBy(x => x.Stare_Comanda_ID));
                     }
 
-                    return View(comenzi.OrderBy(x => x.Stare_Comanda_ID));
                 }
                 else
                 {
-                    return View();
+                    return View("EmptyOrders");
                 }
             }
         }

@@ -7,18 +7,22 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Identity\Data\**" />
+    <Compile Remove="Migrations\**" />
     <Compile Remove="Pages\**" />
     <Compile Remove="Views\Adrese\**" />
     <Compile Remove="Views\ComandaDELETED\**" />
     <Content Remove="Areas\Identity\Data\**" />
+    <Content Remove="Migrations\**" />
     <Content Remove="Pages\**" />
     <Content Remove="Views\Adrese\**" />
     <Content Remove="Views\ComandaDELETED\**" />
     <EmbeddedResource Remove="Areas\Identity\Data\**" />
+    <EmbeddedResource Remove="Migrations\**" />
     <EmbeddedResource Remove="Pages\**" />
     <EmbeddedResource Remove="Views\Adrese\**" />
     <EmbeddedResource Remove="Views\ComandaDELETED\**" />
     <None Remove="Areas\Identity\Data\**" />
+    <None Remove="Migrations\**" />
     <None Remove="Pages\**" />
     <None Remove="Views\Adrese\**" />
     <None Remove="Views\ComandaDELETED\**" />

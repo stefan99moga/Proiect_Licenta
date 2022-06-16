@@ -11,6 +11,14 @@
     <h7>Panou de gestionare a comenzilor</h7>
 </div>
 
+@using (Html.BeginForm())
+{
+    <p>
+        ID comandă: @Html.TextBox("SearchID")
+        <input type='submit' value='Căutare' />
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>

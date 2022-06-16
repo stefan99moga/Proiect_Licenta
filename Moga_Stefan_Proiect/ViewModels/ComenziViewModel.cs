@@ -47,15 +47,15 @@ namespace Moga_Stefan_Proiect.ViewModels
 
         private async Task Add() //TODO Add from comenzi noi
         {
-            var orderNumber = await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceti numarul comenzii aflat pe bon", "Urmator", "Renunta", maxLength: 3, keyboard: Keyboard.Numeric);
+            var orderNumber = await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceți numărul comenzii aflat pe bon", "Următor", "Renunță", maxLength: 5, keyboard: Keyboard.Numeric);
             if (orderNumber == null)
                 return;
 
-            var adress = await App.Current.MainPage.DisplayPromptAsync("ADRESA COMANDA", "oras strada numar", "Urmator", "Renunta");
+            var adress = await App.Current.MainPage.DisplayPromptAsync("ADRESA COMANDA", "Localitate Strada Număr", "Următor", "Renunță");
             if (adress == null)
                 return;
 
-            var paymentMethod = await App.Current.MainPage.DisplayActionSheet("TIP PLATA", "Renunta", null, "Cash", "Card", "Online");
+            var paymentMethod = await App.Current.MainPage.DisplayActionSheet("TIP PLATA", "Renunță", null, "Cash", "Card", "Online");
             if (paymentMethod == "Renunta")
                 return;
 
@@ -64,8 +64,16 @@ namespace Moga_Stefan_Proiect.ViewModels
             IEnumerable<Position> approximateLocations =
                         await geoCoder.GetPositionsForAddressAsync(adress);
             Position position = approximateLocations.FirstOrDefault();
+            
             var coordonatesLat = Convert.ToDouble($"{ position.Latitude}");
             var coordonatesLong = Convert.ToDouble($"{ position.Longitude}");
+
+            if (coordonatesLat  < 45 || coordonatesLat > 47 || coordonatesLong < 22 || coordonatesLong > 24)
+            {
+                await App.Current.MainPage.DisplayAlert("Eroare localizare!", "Vă rugăm, introduceți adresa din periferia Clujului sau după cum urmează: localitate strada număr", "Ok");
+                return;
+            }
+                
 
             //adauga date in tabela
             await OrderService.AddOrder(Convert.ToInt16(orderNumber), adress, paymentMethod, coordonatesLat, coordonatesLong);
@@ -74,11 +82,11 @@ namespace Moga_Stefan_Proiect.ViewModels
 
         private async Task Remove(Order order) //TODO Anuleaza actiundea de a lua comanda
         {
-            bool result = await App.Current.MainPage.DisplayAlert("Sigur doriti sa stergeti comanda?", null, "DA", "NU");
+            bool result = await App.Current.MainPage.DisplayAlert("Sigur doriți să ștergeți comanda?", null, "DA", "NU");
             if(result == true)
             {
                 await OrderService.RemoveOrder(order.ID);
-                await App.Current.MainPage.DisplayAlert("Succes!", "Comanda Stearsa", "OK");
+                await App.Current.MainPage.DisplayAlert("Succes!", "Comanda ștearsă", "OK");
                 await Refresh();
             }
             else
@@ -94,7 +102,7 @@ namespace Moga_Stefan_Proiect.ViewModels
         }
         private async Task Edit(Order order) //TODO Modifica starea comenzii si finalizeaza comanda
         {
-            order.OrderNumber = Convert.ToInt16(await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceti numarul comenzii aflat pe bon", "Urmator", "Renunta", maxLength: 3, keyboard: Keyboard.Numeric, initialValue: order.OrderNumber.ToString()));
+            order.OrderNumber = Convert.ToInt16(await App.Current.MainPage.DisplayPromptAsync("NUMAR COMANDA", "Introduceti numarul comenzii aflat pe bon", "Urmator", "Renunta", maxLength: 5, keyboard: Keyboard.Numeric, initialValue: order.OrderNumber.ToString()));
             if (order.OrderNumber == 0)
                 return;
 
@@ -113,6 +121,12 @@ namespace Moga_Stefan_Proiect.ViewModels
             Position position = approximateLocations.FirstOrDefault();
             order.CoordonateLat = Convert.ToDouble($"{ position.Latitude}");
             order.CoordonateLogi = Convert.ToDouble($"{ position.Longitude}");
+
+            if (order.CoordonateLat < 45 || order.CoordonateLat > 47 || order.CoordonateLogi < 22 || order.CoordonateLogi > 24)
+            {
+                await App.Current.MainPage.DisplayAlert("Eroare localizare!", "Vă rugăm, introduceți adresa din periferia Clujului sau după cum urmează: localitate strada număr", "Ok");
+                return;
+            }
 
             await OrderService.EditOrder(order);
             await Refresh();

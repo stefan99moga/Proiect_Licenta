@@ -53,7 +53,7 @@ namespace Moga_Stefan_Proiect.Services
         }
         public static Task<int> SaveOrderAsync(Order order)
         {
-            _ = Init(); // e necesar??
+            _ = Init();
             if (order.ID != 0)
             {
                 return db.UpdateAsync(order);
