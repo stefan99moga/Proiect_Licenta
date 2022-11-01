@@ -1,1 +1,1 @@
-Licenta baa
+Licenta
