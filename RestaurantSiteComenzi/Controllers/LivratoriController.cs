@@ -10,7 +10,7 @@ using RestaurantSiteComenzi.Models;
 
 namespace RestaurantSiteComenzi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class LivratoriController : Controller
     {
         private readonly RestaurantContext _context;
