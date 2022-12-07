@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace RestaurantSiteComenzi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Bucatar")]
     public class ComenziController : Controller
     {
         public Uri uri = new Uri("https://localhost:44305/api/");

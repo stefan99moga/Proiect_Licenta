@@ -7,7 +7,7 @@ using RestaurantSiteComenzi.Helpers;
 
 namespace RestaurantSiteComenzi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProdusController : Controller
     {
         private readonly RestaurantContext _context;

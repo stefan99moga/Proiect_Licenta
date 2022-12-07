@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSiteComenzi.Models;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<RestaurantContext>();;
 
 //Fetching Connection string from APPSETTINGS.JSON  
 var ConnectionString = builder.Configuration.GetConnectionString("RestaurantConstr");
@@ -14,6 +10,11 @@ var ConnectionString = builder.Configuration.GetConnectionString("RestaurantCons
 //Entity Framework  
 builder.Services.AddDbContext<RestaurantContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(ConnectionString));
+
+//Identity
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<RestaurantContext>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -29,7 +30,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 3;
     options.Password.RequiredUniqueChars = 1;
-
     // Lockout settings.
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
