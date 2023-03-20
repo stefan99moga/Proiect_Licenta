@@ -131,21 +131,7 @@ namespace WebService.Controllers
             return comenzi;
         }
 
-        //// DELETE: api/Comenzi/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteComenzi(int id)
-        //{
-        //    var comenzi = await _context.Comenzi.FindAsync(id);
-        //    if (comenzi == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    DoNullCartOrderID(id);
-        //    _context.Comenzi.Remove(comenzi);
-        //    await _context.SaveChangesAsync();
 
-        //    return NoContent();
-        //}
 
         private bool ComenziExists(int id)
         {
@@ -159,12 +145,6 @@ namespace WebService.Controllers
             _context.SaveChanges();
 
         }
-        //private void DoNullCartOrderID(int id)
-        //{
-        //    var cos_user = _context.Cos.Where(x => x.Comanda_id == id).ToList();
-        //    cos_user.ForEach(x => x.Comanda_id = null);
-        //    _context.SaveChanges();
-        //}
 
         [HttpPost("OrderSent")]
         public void UpdateCart([FromBody] Comenzi comenzi)
