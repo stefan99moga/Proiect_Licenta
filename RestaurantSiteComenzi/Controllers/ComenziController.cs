@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSiteComenzi.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 namespace RestaurantSiteComenzi.Controllers
@@ -11,14 +12,11 @@ namespace RestaurantSiteComenzi.Controllers
     public class ComenziController : Controller
     {
         public Uri uri = new Uri("https://localhost:44305/api/");
-
         private readonly RestaurantContext _context;
-
         public ComenziController(RestaurantContext context)
         {
             _context = context;
         }
-
         public ViewResult Index(string sortOrder, int searchId)
         {
             //Sortare dupa stare comanda
@@ -29,7 +27,6 @@ namespace RestaurantSiteComenzi.Controllers
             ViewData["AnulataParam"] = String.IsNullOrEmpty(sortOrder) ? "anulata" : "anulata";
             ViewData["LivrataParam"] = String.IsNullOrEmpty(sortOrder) ? "livrata" : "livrata";
 
-            //apelare webservice
             using (var client = new HttpClient())
             {
                 client.BaseAddress = uri;
@@ -85,7 +82,6 @@ namespace RestaurantSiteComenzi.Controllers
                 }
             }
         }
-
         public ViewResult Edit(int id)
         {
             using (var client = new HttpClient())
@@ -111,7 +107,6 @@ namespace RestaurantSiteComenzi.Controllers
             }
 
         }
-
         public ActionResult GetStareComanda()
         {
             var order_states = _context.Stare_Comanda.Select(a => new
@@ -122,8 +117,6 @@ namespace RestaurantSiteComenzi.Controllers
 
             return Json(order_states.ToList());
         }
-
-
         public ViewResult Details(int id)
         {
             using (var client = new HttpClient())
@@ -148,5 +141,58 @@ namespace RestaurantSiteComenzi.Controllers
                 }
             }
         }
+
+        //public ActionResult OrderArchives(int searchId)
+        //{
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = uri;
+        //        var url_string = "Comenzi?sortOrder=livrata";
+
+        //        var responseTask = client.GetAsync(url_string);
+        //        responseTask.Wait();
+        //        var result = responseTask.Result;
+
+        //        if (searchId > 0)
+        //        {
+        //            url_string = "Comenzi?sortOrder=livrata&searchId=" + searchId;
+        //        }
+
+        //        if (result.IsSuccessStatusCode)
+        //        {
+        //            if (searchId > 0)
+        //            {
+        //                Comenzi[] temp_list = new Comenzi[1];
+        //                var readTask1 = result.Content.ReadFromJsonAsync<Comenzi>();
+        //                readTask1.Wait();
+        //                temp_list[0] = readTask1.Result;
+        //                var comenzi = temp_list;
+        //                if (comenzi.Length == 0)
+        //                {
+        //                    return View("EmptyOrders");
+        //                }
+        //                return View(comenzi);
+        //            }
+        //            else
+        //            {
+        //                var readTask = result.Content.ReadFromJsonAsync<Comenzi[]>();
+        //                readTask.Wait();
+        //                var comenzi = readTask.Result;
+
+        //                if (comenzi.Length == 0)
+        //                {
+        //                    return View("EmptyOrders");
+        //                }
+
+        //                return View(comenzi.OrderBy(x => x.Stare_Comanda_ID));
+        //            }
+
+        //        }
+        //        else
+        //        {
+        //            return View("EmptyOrders");
+        //        }
+        //    }
+        //}
     }
 }

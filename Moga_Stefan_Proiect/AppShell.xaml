@@ -30,9 +30,11 @@
     </Shell.Resources>
 
     <TabBar>
+        <!-- Deprecated
         <ShellContent Title="Comenzi" Icon="iconcomenzi.png" Route="ComenziPage" ContentTemplate="{DataTemplate local:ComenziPage}" />
+        -->
+        <ShellContent Title="Comenzi" Icon="iconmaimulte.png" Route="MaimultePage" ContentTemplate="{DataTemplate local:ComenziNoiPage}" />
         <ShellContent Title="Harta" Icon="iconharta.png" Route="HartaPage" ContentTemplate="{DataTemplate local:HartaPage}" />
-        <ShellContent Title="Comenzi noi" Icon="iconmaimulte.png" Route="MaimultePage" ContentTemplate="{DataTemplate local:ComenziNoiPage}" />
     </TabBar>
 
 

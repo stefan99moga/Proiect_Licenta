@@ -10,7 +10,6 @@
     </ContentPage.BindingContext>
 
     <ListView x:Name="comNoiListView" 
-              ItemSelected="comNoiListView_ItemSelected"
               ItemTapped="comNoiListView_ItemTapped"
               HasUnevenRows="True"
               RowHeight="10"
@@ -31,7 +30,7 @@
                                          Spacing="20">
                                 <Label Text="{Binding Id}"
                                            TextColor="{AppThemeBinding Dark=White, Light=Black}"
-                                           FontSize="Large"/>
+                                           FontSize="Medium"/>
                                 
                                 <StackLayout>
                                     

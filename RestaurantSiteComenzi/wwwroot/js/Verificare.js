@@ -1,11 +1,15 @@
 ﻿$(document).ready(function () {
     var comanda_id;
+    var plata_online = false;
 
     $.ajax({
         type: "GET",
         url: "https://localhost:44305/api/Cart?user_id=" + user_ID,
         data: "{}",
         success: function (data) {
+            if (data == 0) {
+                location.replace('https://localhost:7119/Cos');
+            }
             //PRODUSE
             var p = '';
             for (var i = 0; i < data.length; i++) {
@@ -17,6 +21,9 @@
             $('#adresa').html(a);
             //TIP PLATA
             var t = data[0].comenzi.tip_plata.tipul_Platii;
+            if (t == "Online") {
+                plata_online = true;
+            }
             $('#tip-plata').html(t);
             //TOTAL PLATA
             var plata = data[0].comenzi.total_Plata + ' lei';
@@ -31,7 +38,7 @@
 
         $.ajax({
             type: 'Delete',
-            url: 'https://localhost:44305/api/Comenzi/' + comanda_id,
+            url: "https://localhost:44305/api/Comenzi/" + comanda_id,
             contentType: 'application/json',
             success: function () {
                 window.location.href = '/Cos';
@@ -55,19 +62,23 @@
     $('#sendOrder').click(function (e) {
         e.preventDefault();
 
-        $.ajax({
-            method: 'POST',
-            url: 'https://localhost:44305/api/Comenzi/OrderSent',
-            data:
-                '{ "User_id":' + '"' + user_ID + '"' +
-                ', "id":' + comanda_id +
-                '}',
-            contentType: 'application/json',
-            success: function () {
+        if (plata_online) {
+            window.location.href = 'https://localhost:7119/Checkout/PlataOnline';
+        } else {
+            $.ajax({
+                method: 'POST',
+                url: 'https://localhost:44305/api/Comenzi/OrderSent',
+                data:
+                    '{ "User_id":' + '"' + user_ID + '"' +
+                    ', "id":' + comanda_id +
+                    '}',
+                contentType: 'application/json',
+                success: function () {
+                    window.location.href = 'https://localhost:7119/Checkout/OrderSent';
+                }
+            });
+        }
 
-                window.location.href = 'https://localhost:7119/Checkout/OrderSent';
-            }
-        });
     });
 
 

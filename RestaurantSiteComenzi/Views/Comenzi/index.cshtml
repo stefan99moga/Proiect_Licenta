@@ -15,9 +15,11 @@
 {
     <p>
         ID comandă: @Html.TextBox("SearchID")
-        <input type='submit' value='Căutare' />
+        <input type='submit' value='Căutare' name="search"/>
     </p>
 }
+
+
 
 <table class="table">
     <thead>
@@ -51,11 +53,11 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
                         <a id="all" class="dropdown-item" asp-action="index">Toate</a>
-                        <a id="b" class="dropdown-item" asp-route-sortOrder="@ViewData["PrimitaParam"]">Primita</a>
-                        <a id="c" class="dropdown-item" asp-route-sortOrder="@ViewData["ConfirmataParam"]">Confirmata</a>
-                        <a id="d" class="dropdown-item" asp-route-sortOrder="@ViewData["RefuzataParam"]">Refuzata</a>
-                        <a id="e" class="dropdown-item" asp-route-sortOrder="@ViewData["AnulataParam"]">Anulata</a>
-                        <a id="f" class="dropdown-item" asp-route-sortOrder="@ViewData["LivrataParam"]">Livrata</a>
+                        <a id="b" class="dropdown-item" asp-route-sortOrder="@ViewData["PrimitaParam"]">Primită</a>
+                        <a id="c" class="dropdown-item" asp-route-sortOrder="@ViewData["ConfirmataParam"]">Confirmată</a>
+                        <a id="d" class="dropdown-item" asp-route-sortOrder="@ViewData["RefuzataParam"]">Refuzată</a>
+                        <a id="e" class="dropdown-item" asp-route-sortOrder="@ViewData["AnulataParam"]">Anulată</a>
+                        <a id="f" class="dropdown-item" asp-route-sortOrder="@ViewData["LivrataParam"]">Livrată</a>
                     </div>
                 </div>
             </th>
@@ -63,7 +65,9 @@
                 @Html.DisplayNameFor(model => model.Data_Comanda)
             </th>
             <th></th>
-            <th></th>
+            <th>
+              @*      <a href="Comenzi/OrderArchives" class="btn btn-secondary btn-sm">Arhivă</a>*@
+            </th>
         </tr>
     </thead>
     <tbody>

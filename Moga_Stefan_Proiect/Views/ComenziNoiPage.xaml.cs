@@ -14,12 +14,9 @@ namespace Moga_Stefan_Proiect.Views
             InitializeComponent();
         }
 
-        private void comNoiListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-        }
-
         private void comNoiListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+
         }
     }
 }

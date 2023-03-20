@@ -61,5 +61,9 @@ namespace RestaurantSiteComenzi.Controllers
         {
             return View("OrderSent");
         }
+        public ActionResult PlataOnline()
+        {
+            return View("PlataComanda");
+        }
     }
 }
