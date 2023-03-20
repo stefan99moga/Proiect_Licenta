@@ -141,58 +141,5 @@ namespace RestaurantSiteComenzi.Controllers
                 }
             }
         }
-
-        //public ActionResult OrderArchives(int searchId)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = uri;
-        //        var url_string = "Comenzi?sortOrder=livrata";
-
-        //        var responseTask = client.GetAsync(url_string);
-        //        responseTask.Wait();
-        //        var result = responseTask.Result;
-
-        //        if (searchId > 0)
-        //        {
-        //            url_string = "Comenzi?sortOrder=livrata&searchId=" + searchId;
-        //        }
-
-        //        if (result.IsSuccessStatusCode)
-        //        {
-        //            if (searchId > 0)
-        //            {
-        //                Comenzi[] temp_list = new Comenzi[1];
-        //                var readTask1 = result.Content.ReadFromJsonAsync<Comenzi>();
-        //                readTask1.Wait();
-        //                temp_list[0] = readTask1.Result;
-        //                var comenzi = temp_list;
-        //                if (comenzi.Length == 0)
-        //                {
-        //                    return View("EmptyOrders");
-        //                }
-        //                return View(comenzi);
-        //            }
-        //            else
-        //            {
-        //                var readTask = result.Content.ReadFromJsonAsync<Comenzi[]>();
-        //                readTask.Wait();
-        //                var comenzi = readTask.Result;
-
-        //                if (comenzi.Length == 0)
-        //                {
-        //                    return View("EmptyOrders");
-        //                }
-
-        //                return View(comenzi.OrderBy(x => x.Stare_Comanda_ID));
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            return View("EmptyOrders");
-        //        }
-        //    }
-        //}
     }
 }
