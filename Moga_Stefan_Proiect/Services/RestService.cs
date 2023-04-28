@@ -14,8 +14,8 @@ namespace Moga_Stefan_Proiect.Services
     {
         HttpClient client;
     
-        string RestUrl = "https://lastgreyhouse75.conveyor.cloud/api/Comenzi";
-        public List<NewOrder> Orders { get; private set; }
+        string RestUrl = "https://lostbluecard3.conveyor.cloud/api/Comenzi";
+		public List<NewOrder> Orders { get; private set; }
 
         public RestService()
         {

@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
 {
-    public class CreateNewAdressModel : PageModel
+    public class CreateNewAdressModel : PageModel //Pentru crearea adreselor direct din Checkout
     {
         private readonly RestaurantContext _context;
 
