@@ -15,7 +15,7 @@
 {
     <p>
         ID comandă: @Html.TextBox("SearchID")
-        <input type='submit' value='Căutare' />
+        <input type='submit' value='Căutare' name="search"/>
     </p>
 }
 
@@ -51,12 +51,11 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
                         <a id="all" class="dropdown-item" asp-action="index">Toate</a>
-                        <a id="a" class="dropdown-item" asp-route-sortOrder="@ViewData["IndecisaParam"]">Indecisa</a>
-                        <a id="b" class="dropdown-item" asp-route-sortOrder="@ViewData["PrimitaParam"]">Primita</a>
-                        <a id="c" class="dropdown-item" asp-route-sortOrder="@ViewData["ConfirmataParam"]">Confirmata</a>
-                        <a id="d" class="dropdown-item" asp-route-sortOrder="@ViewData["RefuzataParam"]">Refuzata</a>
-                        <a id="e" class="dropdown-item" asp-route-sortOrder="@ViewData["AnulataParam"]">Anulata</a>
-                        <a id="f" class="dropdown-item" asp-route-sortOrder="@ViewData["LivrataParam"]">Livrata</a>
+                        <a id="b" class="dropdown-item" asp-route-sortOrder="@ViewData["PrimitaParam"]">Primită</a>
+                        <a id="c" class="dropdown-item" asp-route-sortOrder="@ViewData["ConfirmataParam"]">Confirmată</a>
+                        <a id="d" class="dropdown-item" asp-route-sortOrder="@ViewData["RefuzataParam"]">Refuzată</a>
+                        <a id="e" class="dropdown-item" asp-route-sortOrder="@ViewData["AnulataParam"]">Anulată</a>
+                        <a id="f" class="dropdown-item" asp-route-sortOrder="@ViewData["LivrataParam"]">Livrată</a>
                     </div>
                 </div>
             </th>
@@ -99,7 +98,10 @@
                     @Html.DisplayFor(modelItem => item.Data_Comanda)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger btn-sm" >Status</a>
+                    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Status</a>
+                    }
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm" >Detalii</a>

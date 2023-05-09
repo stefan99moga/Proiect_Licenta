@@ -20,17 +20,19 @@
         
         if (status_ales == -1) {
             alert('Câmp necompletat!');
+            return false;
         }
 
-        $.ajax({
-            method: 'POST',
-            contentType: "application/json; charset=utf-8",
-            url: 'https://localhost:44305/api/Comenzi/'  + comanda_id,
-            data: '{"stare_Comanda_ID":' + status_ales + '}',
-            success: function (response) {
-                window.location.href = '/Comenzi';
-            }
-        });
-
+        if (confirm("Sunteți sigur că doriți să salvați starea comenzii?")) {
+            $.ajax({
+                method: 'POST',
+                contentType: "application/json; charset=utf-8",
+                url: 'https://localhost:44305/api/Comenzi/' + comanda_id,
+                data: '{"stare_Comanda_ID":' + status_ales + '}',
+                success: function (response) {
+                    window.location.href = '/Comenzi';
+                }
+            });
+        }
     });
 });

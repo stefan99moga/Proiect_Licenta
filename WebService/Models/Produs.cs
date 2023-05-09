@@ -24,6 +24,7 @@ namespace WebService.Models
 
         [ForeignKey("Categorie_Id")]
         public Categorie_Produs Categorie_produs { get; set; }
+        public bool Is_Deprecated { get; set; }
     }
 
 }

@@ -24,7 +24,7 @@ namespace WebService.Controllers
         [HttpGet]
         public IEnumerable<Produs> Get(string sortOrder)
         {
-            var produse = from p in _context.Produs select p;
+            var produse = from p in _context.Produs where p.Is_Deprecated == false select p;
 
             int pizza = 1;
             int desert = 2;
@@ -60,31 +60,6 @@ namespace WebService.Controllers
             }
 
             return produse.Include(x => x.Categorie_produs);
-        }
-
-        // GET api/<ProduseController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ProduseController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ProduseController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ProduseController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

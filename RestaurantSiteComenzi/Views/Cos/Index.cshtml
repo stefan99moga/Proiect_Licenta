@@ -24,8 +24,12 @@
             foreach (var item in Model)
             {
                 //CALCUL TOTAL PRODUS SI TOTAL PRODUSE DIN COS
-                total_pret_produse += (double)item.Produs.Pret_Produs * item.Quantity;
+                //total_pret_produse += (double)item.Produs.Pret_Produs * item.Quantity;
+                //total_pret_produs = (double)item.Produs.Pret_Produs * item.Quantity;
+
                 total_pret_produs = (double)item.Produs.Pret_Produs * item.Quantity;
+                total_pret_produse += total_pret_produs;
+
 
                 <div class="d-flex flex-row justify-content-between align-items-center p-2 mt-4 px-3 rounded product_data" id="card">
                 <input type="hidden" value="@Html.DisplayFor(x => item.id)" class="data-cos-id"/>

@@ -1,0 +1,72 @@
+﻿@page
+@model RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage.MyOrdersModel
+@using RestaurantSiteComenzi.Models;
+
+@{
+    ViewData["Title"] = "Comenzile mele";
+    ViewData["ActivePage"] = ManageNavPages.Orders;
+}
+<h3>@ViewData["Title"]:</h3>
+
+@if (Model.ComenziList.Count > 0)
+{
+        <div class="row">
+        <div class="col-md-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Numărul comenzii:
+                        </th>
+                        <th>
+                            Tipul plății:
+                        </th>
+                        <th>
+                            Total:
+                        </th>
+                        <th>
+                            Adresa:
+                        </th>
+                        <th>
+                            Stare comandă:
+                        </th>
+                        <th>
+                            Data comenzii:
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Comenzi comenziModel in Model.ComenziList)
+                    {
+                        <tr>
+                            <td>
+                                @comenziModel.Id
+                            </td>
+                            <td>
+                                @comenziModel.Tip_plata.Tipul_Platii
+                            </td>
+                            <td>
+                                @comenziModel.Total_Plata_Str
+                            </td>
+                            <td>
+                                @comenziModel.Adrese.Oras
+                                @comenziModel.Adrese.Strada
+                                @comenziModel.Adrese.Numar
+                            </td>
+                            <td>
+                                @comenziModel.Stare_Comanda.Nume
+                            </td>
+                            <td>
+                                @comenziModel.Data_Comanda
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+} else
+{
+    <h4 style="padding-top:10px">Nu aveți comenzi!</h4>
+}
+

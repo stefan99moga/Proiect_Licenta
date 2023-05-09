@@ -62,6 +62,8 @@ namespace  RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
         public static string Adress => "Adress";
 
+        public static string Orders => "MyOrders";
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -111,6 +113,7 @@ namespace  RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
         public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
         public static string AdressClass(ViewContext viewContext) => PageNavClass(viewContext, Adress);
 
+        public static string MyOrdersClass(ViewContext viewContext) => PageNavClass(viewContext, Orders);
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

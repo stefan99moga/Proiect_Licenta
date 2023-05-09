@@ -1,4 +1,17 @@
 ﻿$(document).ready(function () {
+
+    //Check if user has products in cart
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44305/api/Cart?user_id=' + user_ID,
+        dara: '',
+        success: function (data) {
+            if (data.length == 0) {
+                location.replace('https://localhost:7119/Cos');
+            }
+        }
+    });
+
     //dropdownlist adresa
     $.ajax({
         type: "GET",
@@ -43,6 +56,7 @@
         if (adresa_aleasa == -1 || tip_plata_aleasa == -1) {
             alert('Câmpuri necompletate!');
         }
+
 
 
         $.ajax({

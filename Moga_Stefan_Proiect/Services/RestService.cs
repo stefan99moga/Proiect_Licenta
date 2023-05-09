@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Moga_Stefan_Proiect.Models;
 using System.Net.Http;
-
+using Xamarin.Forms.Maps;
 
 namespace Moga_Stefan_Proiect.Services
 {
@@ -14,8 +14,8 @@ namespace Moga_Stefan_Proiect.Services
     {
         HttpClient client;
     
-        string RestUrl = "https://webservice-mj5.conveyor.cloud/api/Comenzi";
-        public List<NewOrder> Orders { get; private set; }
+        string RestUrl = "https://lostbluecard3.conveyor.cloud/api/Comenzi";
+		public List<NewOrder> Orders { get; private set; }
 
         public RestService()
         {

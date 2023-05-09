@@ -7,7 +7,7 @@ using RestaurantSiteComenzi.Helpers;
 
 namespace RestaurantSiteComenzi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProdusController : Controller
     {
         private readonly RestaurantContext _context;
@@ -53,6 +53,7 @@ namespace RestaurantSiteComenzi.Controllers
         {
             if (ModelState.IsValid)
             {
+                produs.Is_Deprecated = false;
                 _context.Add(produs);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -135,7 +136,8 @@ namespace RestaurantSiteComenzi.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var produs = await _context.Produs.FindAsync(id);
-            _context.Produs.Remove(produs);
+            //_context.Produs.Remove(produs);
+            produs.Is_Deprecated = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
