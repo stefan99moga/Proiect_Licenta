@@ -31,18 +31,18 @@ namespace Moga_Stefan_Proiect.Views
         }
         public async void GetOrderPinLocations()
         {
-            //var order = await OrderService.GetOrder();
-            var order = await App.Database.GetOrderListsAsync();
+            //var orders = await OrderService.GetOrder();
+            var orders = await App.Database.GetOrderListsAsync();
 
-            if(order != null)
+            if(orders != null)
             {
-                foreach(var item in order)
+                foreach(var item in orders)
                 {
                     Geocoder geocoder = new Geocoder();
-                    IEnumerable<Position> aproxPositions = await geocoder.GetPositionsForAddressAsync(item.Adrese.Oras +" "+ item.Adrese.Strada +" "+ item.Adrese.Numar);
-                    Position position = aproxPositions.FirstOrDefault();
-                    var cordLat = Convert.ToDouble(position.Latitude);
-                    var cordLong = Convert.ToDouble(position.Longitude);
+                    IEnumerable<Position> coordonates = await geocoder.GetPositionsForAddressAsync(item.Adrese.Oras +" "+ item.Adrese.Strada +" "+ item.Adrese.Numar);
+                    Position position = coordonates.FirstOrDefault();
+                    var cordLat = position.Latitude;
+                    var cordLong = position.Longitude;
                     Pin OrderPins = new Pin()
                     {
                         Label = item.Id.ToString() + " - " + item.Tip_plata.Tipul_Platii.ToString(),

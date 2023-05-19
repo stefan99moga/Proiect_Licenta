@@ -1,7 +1,4 @@
-﻿using Moga_Stefan_Proiect.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+﻿using Xamarin.Forms;
 using Moga_Stefan_Proiect.Services;
 
 namespace Moga_Stefan_Proiect
@@ -15,18 +12,6 @@ namespace Moga_Stefan_Proiect
 
             Database = new OrderListDatabase(new RestService());
             MainPage = new AppShell();
-        }
-
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }
