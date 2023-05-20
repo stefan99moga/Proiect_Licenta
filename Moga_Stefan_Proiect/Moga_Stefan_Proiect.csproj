@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,16 +14,21 @@
   <ItemGroup>
     <Compile Remove="AssemblyInfo.cs" />
     <Compile Remove="Models\ItemState.cs" />
+    <Compile Remove="Models\Order.cs" />
     <Compile Remove="Models\OrderLocations.cs" />
     <Compile Remove="Models\RefreshCommand.cs" />
     <Compile Remove="Services\IDataStore.cs" />
     <Compile Remove="Services\IOrderService.cs" />
     <Compile Remove="Services\MockDataStore.cs" />
     <Compile Remove="Services\OrderLocationsService.cs" />
+    <Compile Remove="Services\OrderService.cs" />
+    <Compile Remove="ViewModels\ComenziViewModel.cs" />
+    <Compile Remove="Views\ComenziPage.xaml.cs" />
     <Compile Remove="Views\editOrderPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Views\ComenziPage.xaml" />
     <EmbeddedResource Remove="Views\editOrderPage.xaml" />
   </ItemGroup>
 
@@ -50,9 +55,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ComenziPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\HartaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

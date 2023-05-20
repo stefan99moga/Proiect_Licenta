@@ -16,7 +16,7 @@ namespace Moga_Stefan_Proiect.Views
 
         private void comNoiListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            
         }
     }
 }
