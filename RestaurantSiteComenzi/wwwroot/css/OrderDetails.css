@@ -1,0 +1,10 @@
+﻿#notificare {
+    display: none;
+    background: #ffd8cd;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 1em;
+    margin: 1em;
+    text-align: center
+}

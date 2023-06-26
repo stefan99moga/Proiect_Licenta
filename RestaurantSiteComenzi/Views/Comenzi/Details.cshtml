@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Detaii";
 }
+<link href="@Url.Content("~/css/OrderDetails.css")" rel="stylesheet" type="text/css" />
 
 <h1>Produse Comandă</h1>
 
 <div>
     <h4>Produsele din comanda #@Model.Select(x => x.Comanda_id).FirstOrDefault() </h4>
+    <div id="notificare"> Atentie! Pretul produselor din comanda au fost schimbate!</div>
     <table class="table">
         <thead>
             <tr>
@@ -23,6 +25,10 @@
             </tr>
         </thead>
         <tbody>
+            @{
+                decimal pret_produs;
+                decimal total_pret=0;
+            }
             @foreach(var item in Model)
             {
                 <tr>
@@ -36,6 +42,8 @@
                         @Html.DisplayFor(Model => item.Quantity)
                     </td>
                 </tr>
+                pret_produs = item.Produs.Pret_Produs * item.Quantity;
+                total_pret += pret_produs;
             }
         </tbody>
     </table>
@@ -45,3 +53,12 @@
 <div>
     <a class="btn btn-secondary btn-sm" asp-action="Index">Înapoi spre Panou Comenzi</a>
 </div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var total_pret = @total_pret;
+        var total_pret_inital = @Model.FirstOrDefault().Comenzi.Total_Plata;
+    </script>
+    <script type="text/javascript" src="~/js/OrderDetails.js"></script>
+}

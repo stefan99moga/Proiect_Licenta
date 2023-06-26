@@ -29,6 +29,7 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
                 .Include(x => x.Adrese)
                 .Include(x => x.Stare_Comanda)
                 .Include(x => x.Tip_plata)
+                .OrderByDescending(x => x.Data_Comanda)
                 .ToList();
         }
 

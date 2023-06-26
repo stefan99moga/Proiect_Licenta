@@ -17,7 +17,7 @@
         e.preventDefault();
 
         var status_ales = $('#stareComandaDropdown').val();
-        
+
         if (status_ales == -1) {
             alert('Câmp necompletat!');
             return false;
@@ -33,6 +33,17 @@
                     window.location.href = '/Comenzi';
                 }
             });
+        }
+    });
+
+    $("#search").on("click", function () {
+        var user_input = $("#SearchID").val();
+        if (user_input < 0) {
+            alert("Valoarea introdusa trebuie sa fie pozitiva!");
+        }
+
+        if (isNaN(user_input)) {
+            alert('Valoarea introdusa trebuie sa fie numerica!')
         }
     });
 });

@@ -30,12 +30,14 @@
                                          Spacing="20">
                                 <Label Text="{Binding Id}"
                                            TextColor="{AppThemeBinding Dark=White, Light=Black}"
-                                           FontSize="Small"/>
+                                           FontSize="Micro"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
                                 
                                 <StackLayout>
                                     
                                     <Label TextColor="{AppThemeBinding Dark=White, Light=Black}"
-                                           FontSize="Default">
+                                           FontSize="Small">
 
                                         <MultiBinding StringFormat="{}{0} {1} {2}">
                                             <Binding Path="Adrese.Oras" />
@@ -53,7 +55,7 @@
                                        VerticalOptions="Center"
                                        HorizontalOptions="EndAndExpand"
                                        TextColor="{AppThemeBinding Dark=White, Light=Black}"
-                                       FontSize="Medium"/>
+                                       FontSize="Small"/>
                             </StackLayout>
                         </Frame>
                     </Grid>

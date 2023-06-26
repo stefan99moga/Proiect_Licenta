@@ -138,6 +138,13 @@ namespace RestaurantSiteComenzi.Controllers
             var produs = await _context.Produs.FindAsync(id);
             //_context.Produs.Remove(produs);
             produs.Is_Deprecated = true;
+
+            var cos = await _context.Cos.Where(x => x.Produs_id == id).ToListAsync();
+            foreach(var item in cos)
+            {
+                item.Is_Cart_In_Order = true;
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

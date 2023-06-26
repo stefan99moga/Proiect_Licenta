@@ -50,7 +50,9 @@ namespace WebService.Controllers
 
             var comanda_details = cos.Where(x => x.Comanda_id == comandaId);
 
-            return comanda_details.Include(x => x.Produs);
+            return comanda_details
+                .Include(x => x.Produs)
+                .Include(x => x.Comenzi);
         }
 
         // POST api/<CartController>

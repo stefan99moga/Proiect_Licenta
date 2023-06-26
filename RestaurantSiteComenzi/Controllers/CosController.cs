@@ -32,7 +32,7 @@ namespace RestaurantSiteComenzi.Models
                         return View("EmptyCart");
                     }
 
-                    return View(produse);
+                    return View(produse.Where(x => x.Produs.Is_Deprecated == false));
                 }
                 else
                 {

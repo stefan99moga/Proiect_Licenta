@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using RestaurantSiteComenzi.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
 
 namespace RestaurantSiteComenzi.Controllers
 {
@@ -59,7 +55,7 @@ namespace RestaurantSiteComenzi.Controllers
                         {
                             return View("EmptyOrders");
                         }
-                        return View(comenzi);
+                        return View(comenzi.OrderByDescending(x => x.Data_Comanda));
                     }
                     else
                     {
@@ -72,7 +68,7 @@ namespace RestaurantSiteComenzi.Controllers
                             return View("EmptyOrders");
                         }
 
-                        return View(comenzi.OrderBy(x => x.Stare_Comanda_ID));
+                        return View(comenzi.OrderByDescending(x => x.Data_Comanda));
                     }
 
                 }

@@ -15,7 +15,7 @@
 {
     <p>
         ID comandă: @Html.TextBox("SearchID")
-        <input type='submit' value='Căutare' name="search"/>
+        <input type='submit' value='Căutare' id="search" name="search"/>
     </p>
 }
 
@@ -110,3 +110,7 @@
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/Comenzi.js"></script>
+}
