@@ -6,7 +6,7 @@
         data: "{}",
         success: function (data) {
             var s = '<option value="-1">Selectați statusul comenzii</option>';
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 1; i < data.length; i++) {
                 s += '<option value="' + data[i].id + '">' + data[i].nume + '</option>';
             }
             $("#stareComandaDropdown").html(s);
