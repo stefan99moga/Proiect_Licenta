@@ -68,7 +68,8 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "E-mail invalid")]
+            [RegularExpression(@"^\S*$", ErrorMessage = "Adresa email nu poate să conțină spațiu.")]
             [Display(Name = "Email nou")]
             public string NewEmail { get; set; }
         }

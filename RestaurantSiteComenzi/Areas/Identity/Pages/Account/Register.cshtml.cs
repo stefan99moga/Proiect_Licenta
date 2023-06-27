@@ -76,13 +76,14 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage ="E-mail invalid")]
+            [RegularExpression(@"^\S*$", ErrorMessage = "Adresa email nu poate să conțină spațiu.")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
             [Phone]
-            [RegularExpression(@"^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")]
+            [RegularExpression(@"^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$", ErrorMessage = "Număr de telefon invalid. Exemplu formă acceptată: 0712345678")]
             [Display(Name = "Număr de telefon")]
             public string PhoneNumber { get; set; }
 

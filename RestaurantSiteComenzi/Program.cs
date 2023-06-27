@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSiteComenzi.Areas.Identity;
 using RestaurantSiteComenzi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,8 @@ builder.Services.AddDbContext<RestaurantContext>((DbContextOptionsBuilder option
 //Identity
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<RestaurantContext>();
+    .AddEntityFrameworkStores<RestaurantContext>()
+    .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
