@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -81,6 +82,7 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account
 
             [Required]
             [Phone]
+            [RegularExpression(@"^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")]
             [Display(Name = "Număr de telefon")]
             public string PhoneNumber { get; set; }
 
@@ -91,7 +93,7 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "{0} trebuie sa fie cel puțin {2} și maxim {1} caracetere.", MinimumLength = 3)]
             [DataType(DataType.Password)]
-            [Display(Name = "Parolă")]
+            [Display(Name = "Parola")]
             public string Password { get; set; }
 
             /// <summary>

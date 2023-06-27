@@ -57,6 +57,7 @@ namespace RestaurantSiteComenzi.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Phone]
+            [RegularExpression(@"^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")]
             [Display(Name = "Număr de telefon")]
             public string PhoneNumber { get; set; }
         }
