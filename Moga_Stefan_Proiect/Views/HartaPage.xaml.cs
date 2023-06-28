@@ -31,7 +31,6 @@ namespace Moga_Stefan_Proiect.Views
         }
         public async void GetOrderPinLocations()
         {
-            //var orders = await OrderService.GetOrder();
             var orders = await App.Database.GetOrderListsAsync();
 
             if(orders != null)
@@ -39,7 +38,7 @@ namespace Moga_Stefan_Proiect.Views
                 foreach(var item in orders)
                 {
                     Geocoder geocoder = new Geocoder();
-                    IEnumerable<Position> coordonates = await geocoder.GetPositionsForAddressAsync(item.Adrese.Oras +", Street "+ item.Adrese.Strada +", no "+ item.Adrese.Numar);
+                    IEnumerable<Position> coordonates = await geocoder.GetPositionsForAddressAsync(item.Adrese.Oras +", Strada "+ item.Adrese.Strada +", numarul "+ item.Adrese.Numar);
                     Position position = coordonates.FirstOrDefault();
                     var cordLat = position.Latitude;
                     var cordLong = position.Longitude;
