@@ -1,5 +1,8 @@
 VIDEO PREZENTARE: https://www.youtube.com/watch?v=AnSc3vbo_iU
 
+![Applications](https://lh3.googleusercontent.com/drive-viewer/AITFw-ydDUjtQc_cgLHbcHtINOaofKrCY_LpRoVlCsNLY3Qf8stFtcEOYs5K0wkxJoLq4bysp694wuYFNSUegtykMbKIGT3giQ=s1600)
+
+
 Programe necesare pentru rulare program:
 * Microsoft Visual Studio 2022 Communitiy
 * Microsoft SQL Server Management Studio
