@@ -7,7 +7,7 @@ namespace RestaurantSiteComenzi.Controllers
 {
     public class CheckoutController : Controller
     {
-        public Uri uri = new Uri("https://localhost:44305/api/");
+        //public Uri uri = new Uri("https://localhost:44305/api/");
 
         private readonly RestaurantContext _context;
 

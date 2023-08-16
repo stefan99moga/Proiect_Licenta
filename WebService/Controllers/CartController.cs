@@ -34,14 +34,14 @@ namespace WebService.Controllers
         }
 
         // GET api/<CartController>/5
-        [HttpGet("{id}")]
-        public IEnumerable<Cos> Get(int id)
-        {
-            var cos = from c in _context.Cos select c;
-            var user_items = cos.Where(x => x.id == id && x.Is_Cart_In_Order == false);
-            return user_items.Include(x => x.Produs)
-                .Include(x => x.Comenzi);
-        }
+        //[HttpGet("{id}")]
+        //public IEnumerable<Cos> Get(int id)
+        //{
+        //    var cos = from c in _context.Cos select c;
+        //    var user_items = cos.Where(x => x.id == id && x.Is_Cart_In_Order == false);
+        //    return user_items.Include(x => x.Produs)
+        //        .Include(x => x.Comenzi);
+        //}
 
         [HttpGet("GetComandaDetails")]
         public IEnumerable<Cos> GetComandaDetails(int comandaId)
@@ -56,7 +56,7 @@ namespace WebService.Controllers
         }
 
         // POST api/<CartController>
-        [HttpPost("AddToCart")] //        [EnableCors(origin: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+        [HttpPost("AddToCart")] 
         public void AddToCart([FromBody] Cos cos)
         {
             var produse_similare_in_cos = _context.Cos.Where(x => x.Produs_id == cos.Produs_id && x.User_id == cos.User_id && x.Is_Cart_In_Order == false);
@@ -88,7 +88,7 @@ namespace WebService.Controllers
         }
 
         [HttpPost("UpdateQtyCart")]
-        public void IncrementQty([FromBody] Cos cos)
+        public void UpdateQty([FromBody] Cos cos)
         {
             var produs_similar_in_cos = _context.Cos.Where(x => x.id == cos.id && x.User_id == cos.User_id && x.Is_Cart_In_Order == false).FirstOrDefaultAsync();
 

@@ -33,21 +33,6 @@ namespace WebService
 
             services.AddDbContext<RestaurantContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RestaurantConstr")));
-
-            //services.Configure<IdentityOptions>(options =>
-            //        options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "MyAllowSpecificOrigins",
-                                  policy =>
-                                  {
-                                      policy.WithOrigins("http://localhost:7119",
-                                                          "http://www.contoso.com")
-                                                            .AllowAnyHeader()
-                                                            .AllowAnyMethod()
-                                                            .AllowCredentials(); 
-                                  });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,15 +49,9 @@ namespace WebService
 
             app.UseRouting();
             app.UseCors(builder => builder
-             //  .AllowCredentials()
                .AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader());
-
-            //app.UseCors(builder => builder
-            //   .AllowCredentials()
-            //   .WithOrigins("http://localhost:7119"));
-            // app.UseCors("MyAllowSpecificOrigins");
 
             app.UseAuthorization();
 
