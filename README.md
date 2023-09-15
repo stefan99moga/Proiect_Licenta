@@ -23,8 +23,8 @@ Import solutie aplicatie:
 7. Click Extensions din bara de sus si apoi Manage Extensions
 8. Se cauta si instaleaza Conveyor by Keyoti for VS 2022+
 9. Se ruleaza solutia si se da click Access Over Internet in fereastra Conveyor
-10. Se copiaza cuvantul generat din linkul https://xxxxxxxxx.conveyor.cloud/swagger 
-11. In fisierul RestService.cs din Moga_Stefan_Proiect/Services la linia 14 se inlocuieste cuvantul mogaapi din cod cu cuvantul copiat
+10. Se copiaza cuvantul generat din linkul https://abcd.conveyor.cloud/swagger 
+11. In fisierul RestService.cs din Moga_Stefan_Proiect/Services la linia 14 se inlocuieste cuvantul abcd din cod cu cuvantul copiat
 12. Se ruleaza din nou proiectul.
 
 Observatie: S-ar putea ca pagina cu harta Google Maps sa nu se incarce fiind nevoia unei noi chei API. Mai multe detalii:
